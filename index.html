@@ -315,6 +315,10 @@
       .welcome-panel .step-chip {font-size:11px;padding:8px 9px}
       .welcome-panel .primary {min-height:67px}
     }
+    .bridge-invite {margin:23px 0 26px;padding:clamp(20px,4vw,28px);border-radius:18px;background:#f8f7f4;border:1px solid #e7e4dd;text-align:center}
+    .bridge-invite h3 {color:#282d30;font-size:clamp(21px,4.5vw,27px);line-height:1.45;letter-spacing:-.04em;margin:0 0 14px}
+    .bridge-invite p {font-size:14px;color:#626a68;line-height:1.8;margin:0}
+    .bridge-invite+.buttons {margin-top:12px}
   </style>
 </head>
 <body>
@@ -463,9 +467,27 @@
     ${!answered?`<div class="ox-grid" role="group" aria-label="참여자가 O 또는 X를 선택하는 영역"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="quiet" data-act="redraw">다른 문제로 바꾸기</button></div><p class="wide-note">답을 선택하면 정답이 공개됩니다 · 문항 ${safe(q.id)}</p>`:
     `<div class="answer-panel" id="answer"><p class="correct">정답은 ${q.key}입니다.</p><p>${safe(q.why)}</p><span class="scripture">${safe(q.verse)}</span></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 문제 보여주기'} <span aria-hidden="true">→</span></button></div></div><p class="wide-note">참여자의 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
   </div></article>`;}
-  function bridgeUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">THREE QUESTIONS, ONE STORY</p><h2>세 개의 질문은<br>하나의 이야기로 이어집니다.</h2><p class="lead">사람의 가치와 죄의 문제, 그리고 예수 그리스도의 복음으로 이어지는 이야기입니다.</p><div class="story-steps"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div><div class="operator-bar">진행자가 시민에게 직접 물어봐 주세요</div><div class="quote">“괜찮으시면 이 세 질문이 어떻게 연결되는지 1분만 말씀드려도 될까요?”</div><div class="role-note"><strong>아래 버튼은 진행자가 누릅니다.</strong> 시민의 대답을 들은 후 해당 버튼을 선택해 주세요.</div><div class="buttons"><button class="primary" data-act="bridge-yes">설명에 동의하셨어요 · 복음 보기</button><button class="quiet" data-act="bridge-no">설명은 괜찮다고 하셨어요 · 종료</button></div><p class="subnote">어느 쪽을 선택하셔도 OX 참여 선물은 똑같이 드립니다.</p></div></article>`;}
-  function gospelUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">ONE STORY · ABOUT 1 MINUTE</p><h2>우리가 전하고 싶은<br>한 가지 이야기</h2><div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div><div class="operator-bar">진행자용 1분 복음 제시문 · 시민에게 직접 설명해 주세요</div><div class="quote">${safe(GOSPEL)}</div><p class="mini-title">설명 후 이어갈 질문</p><p class="lead" style="font-size:16px">“혹시 방금 들으신 내용 중에 궁금하시거나 이야기해 보고 싶은 부분이 있으세요?”</p><div class="callout">원하지 않는 사람에게 결신이나 기도를 강요하지 않습니다. 질문을 듣고 모르는 것은 정확히 확인하겠다고 안내합니다.</div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="primary" data-act="gospel-done">설명 마침 · 커피 쿠폰 안내 <span aria-hidden="true">→</span></button></div></div></article>`;}
-  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>진행자 확인 · 커피 쿠폰 전달</strong><div style="margin-top:5px">OX 세 문제 참여를 마쳤습니다. 정답 개수나 복음 설명 청취 여부에 관계없이 1인 1매를 전달해 주세요.</div></div>
+  function bridgeUI(){return `<article class="panel"><div class="panel-inner">
+    <p class="eyebrow">OX 퀴즈 완료 · 참여해 주셔서 감사합니다</p>
+    <h2>세 가지 질문,<br>하나의 이야기.</h2>
+    <p class="lead">조금 전 풀어보신 질문들은 성경이 전하는 복음으로 연결됩니다.</p>
+    <div class="story-steps" aria-label="이야기의 흐름"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div>
+    <div class="bridge-invite">
+      <h3>이 이야기를 1분만 들어보시겠어요?</h3>
+      <p>부담 없이 선택해 주세요. 듣지 않으셔도 참여 선물은 똑같이 드립니다.</p>
+    </div>
+    <div class="buttons"><button class="primary" data-act="bridge-yes">네, 들어볼게요 <span aria-hidden="true">→</span></button><button class="quiet" data-act="bridge-no">아니요, 괜찮아요</button></div>
+  </div></article>`;}
+  function gospelUI(){return `<article class="panel"><div class="panel-inner">
+    <p class="eyebrow">세 가지 질문이 전하는 이야기</p>
+    <h2>우리가 전하고 싶은<br>한 가지 이야기</h2>
+    <div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div>
+    <div class="quote">${safe(GOSPEL)}</div>
+    <p class="mini-title">더 궁금한 점이 있으신가요?</p>
+    <p class="lead" style="font-size:16px">들으신 내용에 대해 자유롭게 질문하셔도 좋습니다.</p>
+    <div class="buttons"><button class="primary" data-act="gospel-done">참여 선물 안내 <span aria-hidden="true">→</span></button></div>
+  </div></article>`;}
+  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>커피 한 잔, 감사의 선물입니다.</strong><div style="margin-top:5px">세 문제에 참여해 주셔서 감사합니다. 정답이나 복음 설명 청취 여부에 관계없이 커피 쿠폰 한 장을 드립니다.</div></div>
     ${s.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${s.conversation?'✓ 추가 대화 기록됨 · 취소하기':'진행자 · 추가 대화가 있었다면 기록'}</button></div>`:''}
     <div class="operator-actions"><div class="main-action-head">진행자 전용 · 다음 시민에게 새 문제 3개를 출제합니다.</div><div class="buttons"><button class="primary" data-act="start">다음 참여자 시작 <span aria-hidden="true">→</span></button><button class="quiet" data-act="home">처음 화면으로</button></div></div><p class="subnote">후속 대화나 연락처 제공은 참여자가 먼저 원할 때만 안내해 주세요. 앱은 개인정보를 수집하지 않습니다.</p></div></article>`;}
   function render(){const phase=state.session.phase;app.innerHTML=phase==='home'?homeUI():phase==='quiz'?quizUI():phase==='bridge'?bridgeUI():phase==='gospel'?gospelUI():doneUI();renderModal();}
