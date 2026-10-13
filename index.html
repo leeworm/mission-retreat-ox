@@ -327,6 +327,16 @@
     .gift-message p {margin:10px 0 0;color:#727673;line-height:1.7;font-size:15px}
     .thanks-signature {font-size:13px;color:#8b8b85;margin:24px 0 0;letter-spacing:.01em}
     @media (max-width:440px) {.thanks-panel .panel-inner{padding:35px 23px}.gift-message{padding:20px 18px}}
+    .stat-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+    .bible-passage {background:#fff;border:1px solid #e4e4df;border-left:3px solid #987b58;border-radius:13px;padding:18px 18px 15px;margin:14px 0 18px}
+    .bible-label {font-size:12px;font-weight:800;color:#856d4d;margin:0 0 10px}
+    .bible-text {padding:0;margin:0;font-size:clamp(16px,2.6vw,19px);line-height:1.85;font-weight:630;letter-spacing:-.01em;color:#272b2e;overflow-wrap:anywhere}
+    .bible-source {display:inline-block;margin-top:15px;text-decoration:underline;text-underline-offset:3px;color:#566676;font-weight:700;font-size:12px;line-height:1.6}
+    .answer-explain {font-size:15px;line-height:1.8;color:#5b6160}
+    .bible-copyright {margin:15px 0 0!important;color:#9a9993;font-size:11px!important}
+    .guide-verse {background:#f5f3ef;padding:9px;border-radius:8px;color:#464a4c!important}
+    .gospel-scripture {font-size:12px;color:#747978;line-height:1.7;margin:7px 0 22px}
+    @media (max-width:440px){.bible-passage{padding:15px 15px 13px}.bible-text{font-size:16px}}
   </style>
 </head>
 <body>
@@ -372,27 +382,27 @@
   // 공개된 성경 내용을 묻는 사실형 OX 문항. 설명은 수정빛교회 전도용 초안 기준.
   const QUESTIONS = [
     [
-      {id:'1-A', q:'성경은 사람의 가치가 연봉이나 성과에 따라 달라진다고 말한다.', key:'X', verse:'창세기 1:27', why:'성경은 사람의 근본 가치를 성과가 아니라 하나님의 형상대로 지음받았다는 데서 찾습니다.'},
-      {id:'1-B', q:'성경은 모든 사람이 하나님의 형상대로 지음받았다고 말한다.', key:'O', verse:'창세기 1:27', why:'직업, 연봉, 학력과 관계없이 인간에게 고유한 존엄이 있다고 말합니다.'},
-      {id:'1-C', q:'예수님은 수고하고 무거운 짐 진 사람들에게 자신에게 오라고 말씀하셨다.', key:'O', verse:'마태복음 11:28', why:'예수님은 지치고 무거운 사람들을 밀어내기보다 자신에게 오라고 초대하셨습니다.'},
-      {id:'1-D', q:'성경은 하나님이 사람의 겉모습보다 중심을 보신다고 말한다.', key:'O', verse:'사무엘상 16:7', why:'사람은 외적인 조건을 많이 보지만, 성경은 하나님이 사람의 중심을 보신다고 말합니다.'}
+      {id:'1-A', q:'성경은 사람의 가치가 연봉이나 성과에 따라 달라진다고 말한다.', key:'X', verse:'창세기 1:27', why:'성경은 사람의 근본 가치를 성과가 아니라 하나님의 형상대로 지음받았다는 데서 찾습니다.', bibleText:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되 남자와 여자를 창조하시고', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=gen&chap=1&sec=27&version=GAE', excerpt:false},
+      {id:'1-B', q:'성경은 모든 사람이 하나님의 형상대로 지음받았다고 말한다.', key:'O', verse:'창세기 1:27', why:'직업, 연봉, 학력과 관계없이 인간에게 고유한 존엄이 있다고 말합니다.', bibleText:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되 남자와 여자를 창조하시고', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=gen&chap=1&sec=27&version=GAE', excerpt:false},
+      {id:'1-C', q:'예수님은 수고하고 무거운 짐 진 사람들에게 자신에게 오라고 말씀하셨다.', key:'O', verse:'마태복음 11:28', why:'예수님은 지치고 무거운 사람들을 밀어내기보다 자신에게 오라고 초대하셨습니다.', bibleText:'수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=mat&chap=11&sec=28&version=GAE', excerpt:false},
+      {id:'1-D', q:'성경은 하나님이 사람의 겉모습보다 중심을 보신다고 말한다.', key:'O', verse:'사무엘상 16:7', why:'사람은 외적인 조건을 많이 보지만, 성경은 하나님이 사람의 중심을 보신다고 말합니다.', bibleText:'…사람은 외모를 보거니와 나 여호와는 중심을 보느니라', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1sa&chap=16&sec=7&version=GAE', excerpt:true}
     ],
     [
-      {id:'2-A', q:'성경은 모든 사람이 죄를 범했다고 말한다.', key:'O', verse:'로마서 3:23', why:'성경은 특정한 사람만이 아니라 모든 사람에게 죄의 문제가 있다고 말합니다.'},
-      {id:'2-B', q:'성경에 따르면 착한 일을 충분히 하면 죄의 문제를 스스로 해결할 수 있다.', key:'X', verse:'에베소서 2:8–9', why:'성경은 구원을 인간의 공로나 실적의 결과로 설명하지 않습니다.'},
-      {id:'2-C', q:'성경에서 죄는 단순한 실수일 뿐, 하나님과의 관계와는 상관이 없다.', key:'X', verse:'이사야 59:2 · 로마서 3:23', why:'죄는 행동 몇 가지를 넘어 하나님과의 관계가 깨어진 문제로 다뤄집니다.'},
-      {id:'2-D', q:'성경은 죄의 삯을 사망이라고 말한다.', key:'O', verse:'로마서 6:23', why:'성경은 죄를 가볍게 보지 않지만, 같은 구절에서 하나님의 은사도 함께 말합니다.'}
+      {id:'2-A', q:'성경은 모든 사람이 죄를 범했다고 말한다.', key:'O', verse:'로마서 3:23', why:'성경은 특정한 사람만이 아니라 모든 사람에게 죄의 문제가 있다고 말합니다.', bibleText:'모든 사람이 죄를 범하였으매 하나님의 영광에 이르지 못하더니', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=3&sec=23&version=GAE', excerpt:false},
+      {id:'2-B', q:'성경에 따르면 착한 일을 충분히 하면 죄의 문제를 스스로 해결할 수 있다.', key:'X', verse:'에베소서 2:8–9', why:'성경은 구원을 인간의 공로나 실적의 결과로 설명하지 않습니다.', bibleText:'너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 … 하나님의 선물이라 (8절) / 행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라 (9절)', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=eph&chap=2&sec=8&version=GAE', excerpt:true},
+      {id:'2-C', q:'성경에서 죄는 단순한 실수일 뿐, 하나님과의 관계와는 상관이 없다.', key:'X', verse:'이사야 59:2 · 로마서 3:23', why:'죄는 행동 몇 가지를 넘어 하나님과의 관계가 깨어진 문제로 다뤄집니다.', bibleText:'오직 너희 죄악이 너희와 너희 하나님 사이를 갈라 놓았고 너희 죄가 그의 얼굴을 가리어서 너희에게서 듣지 않으시게 함이니라', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=isa&chap=59&sec=2&version=GAE', excerpt:false},
+      {id:'2-D', q:'성경은 죄의 삯을 사망이라고 말한다.', key:'O', verse:'로마서 6:23', why:'성경은 죄를 가볍게 보지 않지만, 같은 구절에서 하나님의 은사도 함께 말합니다.', bibleText:'죄의 삯은 사망이요 하나님의 은사는 그리스도 예수 우리 주 안에 있는 영생이니라', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=6&sec=23&version=GAE', excerpt:false}
     ],
     [
-      {id:'3-A', q:'성경은 구원을 인간이 노력해서 얻는 보상이 아니라 하나님의 선물이라고 말한다.', key:'O', verse:'에베소서 2:8–9 · 로마서 6:23', why:'복음의 핵심은 인간의 성취가 아니라 하나님의 은혜입니다.'},
-      {id:'3-B', q:'기독교 복음의 핵심은 “더 착하게 살면 하나님께 인정받는다”이다.', key:'X', verse:'로마서 5:8 · 에베소서 2:8–9', why:'복음은 하나님이 먼저 죄인을 사랑하셔서 예수님을 보내셨다는 소식입니다.'},
-      {id:'3-C', q:'성경은 예수님께서 우리의 죄를 위하여 죽으셨다고 말한다.', key:'O', verse:'고린도전서 15:3', why:'예수님의 십자가 죽음은 기독교 복음의 중심 사건입니다.'},
-      {id:'3-D', q:'성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.', key:'X', verse:'고린도전서 15:3–4', why:'성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.'}
+      {id:'3-A', q:'성경은 구원을 인간이 노력해서 얻는 보상이 아니라 하나님의 선물이라고 말한다.', key:'O', verse:'에베소서 2:8–9 · 로마서 6:23', why:'복음의 핵심은 인간의 성취가 아니라 하나님의 은혜입니다.', bibleText:'너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 … 하나님의 선물이라 (8절) / 행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라 (9절)', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=eph&chap=2&sec=8&version=GAE', excerpt:true},
+      {id:'3-B', q:'기독교 복음의 핵심은 “더 착하게 살면 하나님께 인정받는다”이다.', key:'X', verse:'로마서 5:8 · 에베소서 2:8–9', why:'복음은 하나님이 먼저 죄인을 사랑하셔서 예수님을 보내셨다는 소식입니다.', bibleText:'우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=5&sec=8&version=GAE', excerpt:false},
+      {id:'3-C', q:'성경은 예수님께서 우리의 죄를 위하여 죽으셨다고 말한다.', key:'O', verse:'고린도전서 15:3', why:'예수님의 십자가 죽음은 기독교 복음의 중심 사건입니다.', bibleText:'내가 받은 것을 먼저 너희에게 전하였노니 이는 성경대로 그리스도께서 우리 죄를 위하여 죽으시고', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1co&chap=15&sec=3&version=GAE', excerpt:false},
+      {id:'3-D', q:'성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.', key:'X', verse:'고린도전서 15:3–4', why:'성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.', bibleText:'장사 지낸 바 되셨다가 성경대로 사흘 만에 다시 살아나사', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1co&chap=15&sec=4&version=GAE', excerpt:false}
     ]
   ];
-  const GOSPEL = '성경은 우리가 단순히 일을 잘하고 성과를 내기 때문에 가치 있는 존재라고 말하지 않고, 하나님의 형상대로 지음받은 존재라고 말합니다. 하지만 동시에 우리 모두가 죄를 범했고, 그 죄 때문에 하나님과의 관계가 깨어졌다고 말합니다. 이 문제는 우리가 더 착해지고 더 열심히 산다고 스스로 해결할 수 있는 문제가 아니라고 합니다. 그래서 하나님께서 우리를 사랑하셔서 예수 그리스도를 보내셨고, 예수님께서 우리의 죄를 위해 십자가에서 죽으시고 다시 살아나셨다는 것이 기독교 복음의 핵심입니다. 구원은 우리가 잘해서 받는 보상이 아니라 예수 그리스도를 믿는 사람에게 하나님께서 은혜로 주시는 선물이라고 성경은 말합니다.';
-  const makeStats = () => ({ completed:0, gospel:0, conversation:0 });
-  const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, conversation:false, area:'pangyo'});
+  const GOSPEL = '하나님은 우리를 창조하시고 사랑하십니다. 하지만 성경은 우리 모두가 죄를 범했고, 하나님을 떠나 자기 뜻대로 살아왔다고 말합니다. 죄는 우리를 하나님과 갈라놓으며, 아무리 착한 일을 많이 해도 스스로 해결할 수 없습니다. 그래서 하나님의 아들 예수 그리스도께서 이 땅에 오셔서 우리의 죄를 대신해 십자가에서 죽으시고, 사흘 만에 다시 살아나셨습니다. 예수님은 죄와 죽음에서 우리를 구원하시는 구주이십니다. 성경은 우리에게 죄에서 돌이켜 회개하고 예수 그리스도를 구주이자 주님으로 믿으라고 초대합니다. 예수님을 믿는 사람은 은혜로 죄 사함을 받고 하나님과 화목하며 영원한 생명을 얻습니다. 이 이야기가 더 궁금하시다면 편하게 질문해 주세요.';
+  const makeStats = () => ({ completed:0, gospel:0 });
+  const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, area:'pangyo'});
   const defaults = () => ({area:'pangyo',stats:{pangyo:makeStats()}, bags:[[],[],[]], last:[null,null,null],session:blankSession()});
   let state = defaults();
   let modal = '';
@@ -424,9 +434,9 @@
       const s = incoming.session;
       if (s && ['home','quiz','bridge','gospel','done'].includes(s.phase) && Number.isInteger(s.stage) && s.stage>=0 && s.stage<=2 && Array.isArray(s.questionIds) && (s.phase==='home'||(s.questionIds.length===3 && s.questionIds.every((id,i)=>QUESTIONS[i].some(q=>q.id===id)))) && Array.isArray(s.choices) && s.choices.length===3 && s.choices.every(v=>v===null||v==='O'||v==='X') ) {
         fresh.session = {...blankSession(),...s,area:'pangyo'};
+        delete fresh.session.conversation;
         fresh.session.counted=!!s.counted;
         fresh.session.gospel=!!s.gospel;
-        fresh.session.conversation=!!s.conversation;
       }
       state = fresh;
     } catch(err) { console.warn('로컬 기록을 복원하지 못했습니다.',err); }
@@ -455,7 +465,6 @@
   function next(){const s=state.session;if(s.phase!=='quiz'||!s.choices[s.stage])return;if(s.stage<2){s.stage++;}else{s.phase='bridge';if(!s.counted){statsFor().completed++;s.counted=true;}}persist();render();moveTop();}
   function bridge(yes){const s=state.session;if(s.phase!=='bridge')return;s.phase=yes?'gospel':'done';persist();render();moveTop();}
   function gospelDone(){const s=state.session;if(s.phase!=='gospel')return;s.phase='done';if(!s.gospel){s.gospel=true;statsFor().gospel++;}persist();render();moveTop();}
-  function toggleConversation(){const s=state.session;if(s.phase!=='done'||!s.gospel)return;s.conversation=!s.conversation;statsFor().conversation=Math.max(0,statsFor().conversation+(s.conversation?1:-1));persist();render();}
   function progress(){return `<div class="progress" role="progressbar" aria-label="퀴즈 진행률" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${state.session.stage+1}">${CATEGORY.map((_,i)=>`<span class="progress-piece ${i<state.session.stage?'done':i===state.session.stage?'active':''}"></span>`).join('')}</div>`;}
   function homeUI(){return `<article class="panel welcome-panel"><div class="panel-inner home-layout">
     <div class="intro-copy">
@@ -473,7 +482,16 @@
     ${!answered?`<p class="stage-help"><b>시민에게 화면을 보여주세요.</b> O/X를 직접 누르시거나 말로 답하셔도 됩니다.</p>`:`<div class="operator-bar">진행자 · 정답을 설명해 주세요</div>`}
     <div class="prompt-kicker">성경에서는 어떻게 말할까요?</div><div class="prompt" id="question-text">${safe(q.q)}</div>
     ${!answered?`<div class="ox-grid" role="group" aria-label="참여자가 O 또는 X를 선택하는 영역"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="quiet" data-act="redraw">다른 문제로 바꾸기</button></div><p class="wide-note">답을 선택하면 정답이 공개됩니다 · 문항 ${safe(q.id)}</p>`:
-    `<div class="answer-panel" id="answer"><p class="correct">정답은 ${q.key}입니다.</p><p>${safe(q.why)}</p><span class="scripture">${safe(q.verse)}</span></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 문제 보여주기'} <span aria-hidden="true">→</span></button></div></div><p class="wide-note">참여자의 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
+    `<div class="answer-panel" id="answer">
+    <p class="correct">정답은 ${q.key}입니다.</p>
+    <div class="bible-passage">
+      <p class="bible-label">개역개정 성경 ${q.excerpt?'· 일부 발췌':''}</p>
+      <blockquote class="bible-text">${safe(q.bibleText)}</blockquote>
+      <a class="bible-source" href="${safe(q.bibleUrl)}" target="_blank" rel="noopener noreferrer">${safe(q.verse)} · 대한성서공회에서 본문 보기 ↗</a>
+    </div>
+    <p class="answer-explain">${safe(q.why)}</p>
+    <p class="bible-copyright">성경전서 개역개정판 © 대한성서공회 1998</p>
+  </div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 문제 보여주기'} <span aria-hidden="true">→</span></button></div></div><p class="wide-note">참여자의 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
   </div></article>`;}
   function bridgeUI(){return `<article class="panel"><div class="panel-inner">
     <p class="eyebrow">OX 퀴즈 완료 · 참여해 주셔서 감사합니다</p>
@@ -489,9 +507,9 @@
   function gospelUI(){return `<article class="panel"><div class="panel-inner">
     <p class="eyebrow">세 가지 질문이 전하는 이야기</p>
     <h2>우리가 전하고 싶은<br>한 가지 이야기</h2>
-    <div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div>
+    <div class="gospel-flow"><span>창조와 사랑</span><span>죄와 단절</span><span>십자가와 부활</span><span>회개와 믿음</span></div>
     <div class="quote">${safe(GOSPEL)}</div>
-    <p class="mini-title">더 궁금한 점이 있으신가요?</p>
+    <p class="gospel-scripture">관련 말씀: 로마서 3:23 · 5:8 · 6:23 / 고린도전서 15:3–4 / 에베소서 2:8–9 / 로마서 10:9</p><p class="mini-title">더 궁금한 점이 있으신가요?</p>
     <p class="lead" style="font-size:16px">들으신 내용에 대해 자유롭게 질문하셔도 좋습니다.</p>
     <div class="buttons"><button class="primary" data-act="gospel-done">참여 선물 안내 <span aria-hidden="true">→</span></button></div>
   </div></article>`;}
@@ -509,9 +527,9 @@
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
       const stats=state.stats.pangyo,total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p>${state.session.phase==='done'&&state.session.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${state.session.conversation?'✓ 이번 회차 추가 대화 기록됨 · 취소':'이번 회차 추가 대화 기록'}</button></div>`:''}<div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p class="guide-verse">${safe(q.bibleText)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
     overlay.querySelector('[data-act="close"]')?.focus({preventScroll:true});
   }
@@ -535,7 +553,6 @@
       case 'bridge-yes':bridge(true);break;
       case 'bridge-no':bridge(false);break;
       case 'gospel-done':gospelDone();break;
-      case 'conversation':toggleConversation();break;
       case 'stats':modal='stats';renderModal();break;
       case 'guide':modal='guide';renderModal();break;
       case 'close':case 'dismiss':modal='';renderModal();break;
