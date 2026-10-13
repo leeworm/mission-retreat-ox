@@ -319,6 +319,14 @@
     .bridge-invite h3 {color:#282d30;font-size:clamp(21px,4.5vw,27px);line-height:1.45;letter-spacing:-.04em;margin:0 0 14px}
     .bridge-invite p {font-size:14px;color:#626a68;line-height:1.8;margin:0}
     .bridge-invite+.buttons {margin-top:12px}
+    .thanks-panel {max-width:700px}
+    .thanks-panel .panel-inner {padding:clamp(32px,6vw,68px)}
+    .thanks-panel .lead {line-height:1.85;margin-bottom:26px}
+    .gift-message {margin:30px 0 20px;background:#faf9f7;border:1px solid #ebe8e2;border-radius:17px;padding:24px 25px}
+    .gift-message strong {display:block;color:#32373a;font-size:clamp(17px,3.4vw,21px);line-height:1.55;letter-spacing:-.03em}
+    .gift-message p {margin:10px 0 0;color:#727673;line-height:1.7;font-size:15px}
+    .thanks-signature {font-size:13px;color:#8b8b85;margin:24px 0 0;letter-spacing:.01em}
+    @media (max-width:440px) {.thanks-panel .panel-inner{padding:35px 23px}.gift-message{padding:20px 18px}}
   </style>
 </head>
 <body>
@@ -487,16 +495,21 @@
     <p class="lead" style="font-size:16px">들으신 내용에 대해 자유롭게 질문하셔도 좋습니다.</p>
     <div class="buttons"><button class="primary" data-act="gospel-done">참여 선물 안내 <span aria-hidden="true">→</span></button></div>
   </div></article>`;}
-  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>커피 한 잔, 감사의 선물입니다.</strong><div style="margin-top:5px">세 문제에 참여해 주셔서 감사합니다. 정답이나 복음 설명 청취 여부에 관계없이 커피 쿠폰 한 장을 드립니다.</div></div>
-    ${s.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${s.conversation?'✓ 추가 대화 기록됨 · 취소하기':'진행자 · 추가 대화가 있었다면 기록'}</button></div>`:''}
-    <div class="operator-actions"><div class="main-action-head">진행자 전용 · 다음 시민에게 새 문제 3개를 출제합니다.</div><div class="buttons"><button class="primary" data-act="start">다음 참여자 시작 <span aria-hidden="true">→</span></button><button class="quiet" data-act="home">처음 화면으로</button></div></div><p class="subnote">후속 대화나 연락처 제공은 참여자가 먼저 원할 때만 안내해 주세요. 앱은 개인정보를 수집하지 않습니다.</p></div></article>`;}
+  function doneUI(){return `<article class="panel thanks-panel"><div class="panel-inner">
+    <div class="done-icon" aria-hidden="true">✓</div>
+    <p class="eyebrow">THANK YOU</p>
+    <h2>참여해 주셔서<br>감사합니다.</h2>
+    <p class="lead">세 가지 질문을 함께해 주셔서 감사합니다.<br>오늘의 이야기가 작은 생각의 계기가 되었기를 바랍니다.</p>
+    <div class="gift-message"><strong>커피 한 잔에 감사의 마음을 담았습니다.</strong><p>즐거운 하루 보내세요.</p></div>
+    <p class="thanks-signature">수정빛교회 1청년부</p>
+  </div></article>`;}
   function render(){const phase=state.session.phase;app.innerHTML=phase==='home'?homeUI():phase==='quiz'?quizUI():phase==='bridge'?bridgeUI():phase==='gospel'?gospelUI():doneUI();renderModal();}
   function getTotals(){return Object.values(state.stats).reduce((acc,obj)=>{Object.keys(acc).forEach(k=>acc[k]+=obj[k]);return acc;},makeStats());}
   function renderModal(){
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
       const stats=state.stats.pangyo,total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p>${state.session.phase==='done'&&state.session.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${state.session.conversation?'✓ 이번 회차 추가 대화 기록됨 · 취소':'이번 회차 추가 대화 기록'}</button></div>`:''}<div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
       overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
