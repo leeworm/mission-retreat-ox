@@ -5,10 +5,27 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f2ee",
-  "theme_color": "#344d6b",
+  "background_color": "#f6f5f2",
+  "theme_color": "#303538",
   "lang": "ko",
   "icons": [
-    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+    {
+      "src": "https://crystallightchurch.org/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "https://www.google.com/s2/favicons?domain=crystallightchurch.org&sz=192",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ]
 }
