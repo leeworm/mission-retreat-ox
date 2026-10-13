@@ -1,5 +1,5 @@
 /* Offline-first cache for the static OX quiz app. */
-const CACHE = 'sujung-ox-2026-10-17-v4';
+const CACHE = 'sujung-ox-2026-10-17-v5';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()));
