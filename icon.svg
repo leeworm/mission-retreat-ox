@@ -1,13 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="36" fill="#154d48"/>
-  <rect x="23" y="23" width="146" height="146" rx="32" fill="#e8f3ee"/>
-  <g stroke="#154d48" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M58 86h77v34a27 27 0 0 1-27 27H85a27 27 0 0 1-27-27V86Z"/>
-    <path d="M135 92h6c22 0 22 32 0 32h-6"/>
-    <path d="M60 155h80"/>
-  </g>
-  <g fill="none" stroke="#bf6745" stroke-width="5" stroke-linecap="round">
-    <path d="M78 49c15 18-10 23 0 37"/>
-    <path d="M110 49c15 18-10 23 0 37"/>
-  </g>
+<rect width="192" height="192" rx="38" fill="#344d6b"/>
+<circle cx="96" cy="96" r="53" fill="none" stroke="#d4b88b" stroke-width="2" opacity=".5"/>
+<g stroke="#d4b88b" stroke-width="9" stroke-linecap="round">
+<path d="M96 24v28M96 140v28M24 96h28M140 96h28"/>
+<path d="M45 45l20 20M127 127l20 20M147 45l-20 20M65 127l-20 20"/>
+</g>
+<circle cx="96" cy="96" r="25" fill="#fffdfa"/>
 </svg>
