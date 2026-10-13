@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#154d48">
+  <meta name="description" content="수정빛교회 1청 미션 리트릿: 세 가지 OX 질문, 하나의 복음 이야기. 휴대폰·태블릿용 현장 진행 앱.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="커피 한 잔 OX">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <title>잠깐, 커피 한 잔? | 수정빛교회 OX</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f4f6f2; --paper:#fffefb; --ink:#20332e; --muted:#687970;
+      --forest:#154d48; --forest-2:#1f6b61; --forest-light:#e8f3ee;
+      --line:#dfe7df; --orange:#bf6745; --orange-light:#fcf0e8;
+      --shadow:0 15px 60px rgba(21,77,72,.08),0 2px 6px rgba(21,77,72,.05);
+      --radius:26px;
+    }
+    * {box-sizing:border-box}
+    html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+    body {margin:0; background:radial-gradient(circle at 84% 0%,#e7f2e8 0,transparent 31%),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.52}
+    button,input,select {font:inherit}
+    button {cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    button:focus-visible,select:focus-visible {outline:3px solid #f0bd6f;outline-offset:4px}
+    .shell {min-height:100dvh;display:flex;flex-direction:column;max-width:1100px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) clamp(16px,4vw,40px) calc(20px + env(safe-area-inset-bottom));}
+    .topbar {display:flex;justify-content:space-between;align-items:center;gap:14px;padding-bottom:18px}
+    .brand {display:flex;align-items:center;gap:11px;min-width:0}
+    .logo {width:43px;height:43px;border-radius:14px;background:var(--forest);display:grid;place-items:center;color:white;flex-shrink:0;box-shadow:0 5px 14px #154d4824}
+    .logo svg {width:27px;height:27px}
+    .brand small {display:block;color:#536f64;font-size:11px;font-weight:760;letter-spacing:.075em}
+    .brand strong {display:block;font-size:14px;font-weight:800;letter-spacing:-.035em;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+    .head-actions {display:flex;gap:7px;flex-shrink:0}
+    .tiny-btn {min-height:40px;border:1px solid var(--line);background:#ffffffad;color:var(--ink);border-radius:12px;font-size:12px;font-weight:760;padding:0 13px}
+    .tiny-btn.dark {border-color:var(--forest);background:var(--forest);color:#fff}
+    main {width:100%;flex:1;display:flex;align-items:center;justify-content:center;padding:20px 0 36px}
+    .panel {width:100%;max-width:800px;background:var(--paper);border:1px solid #eaf0e8;box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;position:relative}
+    .panel-inner {padding:clamp(23px,5vw,56px)}
+    .top-pattern {position:absolute;right:-53px;top:-79px;width:220px;height:220px;border:35px solid #e4efe9;border-radius:50%;opacity:.8;pointer-events:none}
+    .eyebrow {color:var(--forest-2);text-transform:uppercase;font-size:12px;letter-spacing:.10em;font-weight:850;margin:0 0 12px}
+    h1,h2,h3,p {margin-top:0}
+    h1 {font-size:clamp(38px,7.7vw,66px);line-height:1.18;letter-spacing:-.065em;margin-bottom:18px}
+    h1 span {color:var(--forest-2)}
+    h2 {font-size:clamp(27px,5vw,42px);letter-spacing:-.055em;line-height:1.3;margin-bottom:15px}
+    h3 {font-size:19px;letter-spacing:-.03em}
+    p.lead {font-size:clamp(16px,2.4vw,19px);color:#52645b;line-height:1.8}
+    .hero-rule {width:60px;height:5px;border-radius:5px;background:#d5a67b;margin:22px 0}
+    .steps {display:flex;flex-wrap:wrap;gap:9px;margin:23px 0 29px}
+    .step-chip {border:1px solid #dce9e0;background:#f5f8f4;color:#566c61;border-radius:999px;padding:9px 13px;font-size:13px;font-weight:770}
+    .step-chip b {color:var(--forest-2);margin-right:5px}
+    .primary,.secondary,.quiet {display:flex;align-items:center;justify-content:center;text-align:center;gap:10px;width:100%;min-height:59px;border-radius:16px;font-weight:850;font-size:17px;padding:15px 19px;transition:transform .1s,background .14s;border:0}
+    .primary {background:var(--forest);color:#fff;box-shadow:0 6px 16px #154d4820}
+    .primary:hover {background:#206258}
+    .secondary {background:#ecf4ee;color:var(--forest);border:1px solid #d9e9df}
+    .quiet {background:transparent;color:#62766b;border:1px solid var(--line);font-size:15px;min-height:52px}
+    .primary:active,.secondary:active,.quiet:active,.ox:active {transform:scale(.985)}
+    .buttons {display:grid;gap:10px;margin-top:24px}
+    .subnote {color:var(--muted);font-size:13px;line-height:1.7;margin:18px 0 0}
+    .subnote strong {color:var(--forest)}
+    .metadata {font-size:13px;color:var(--muted);font-weight:650;margin-top:20px}
+    .section-top {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+    .round-label {color:var(--forest);font-size:13px;font-weight:850;background:var(--forest-light);border-radius:11px;padding:8px 12px}
+    .round-count {color:var(--muted);font-size:13px;font-weight:780;font-variant-numeric:tabular-nums}
+    .progress {display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:30px}
+    .progress-piece {height:7px;border-radius:999px;background:#e2e8e2}
+    .progress-piece.active {background:var(--forest-2)}
+    .progress-piece.done {background:#b5d6c0}
+    .prompt-kicker {font-weight:800;color:#658578;font-size:14px;letter-spacing:.02em;margin-bottom:7px}
+    .prompt {font-size:clamp(27px,5.3vw,43px);font-weight:830;line-height:1.48;letter-spacing:-.043em;min-height:138px;display:flex;align-items:center;margin-bottom:20px;overflow-wrap:anywhere}
+    .prompt strong {color:var(--forest)}
+    .ox-grid {display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .ox {min-height:clamp(125px,23vh,205px);border-radius:22px;background:#eaf4ec;border:2px solid #d7e8d9;color:#166044;font-size:clamp(78px,17vw,120px);font-weight:650;line-height:1;box-shadow:inset 0 -6px 0 #1660440b}
+    .ox.x {background:#fff1eb;border-color:#f4e1d7;color:#b3513e}
+    .ox small {display:block;font-size:13px;letter-spacing:.01em;font-weight:700;margin-top:7px}
+    .answer-panel {background:#f3f7f2;border:1px solid #dce9dd;border-radius:18px;padding:24px;margin-top:6px}
+    .answer-panel .correct {font-weight:900;font-size:19px;color:var(--forest-2);margin:0 0 12px}
+    .answer-panel p {font-size:16px;line-height:1.75;margin:0}
+    .scripture {display:inline-block;border-radius:8px;background:#deeee2;color:#2d6752;font-size:13px;font-weight:850;padding:5px 9px;margin:15px 0 0}
+    .answer-actions {display:grid;gap:11px;margin-top:20px}
+    .wide-note {margin:17px 0 0;text-align:center;color:#7a887f;font-size:12px}
+    .story-steps {display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:23px 0 26px}
+    .story-item {border:1px solid var(--line);border-radius:14px;text-align:center;padding:12px 6px;background:#f8faf7;font-weight:750;font-size:13px;color:#4c6f5c}
+    .story-item b {display:block;font-size:19px;margin-bottom:3px;color:var(--forest)}
+    .quote {background:#f0f5ef;padding:23px;border-left:5px solid #7dad96;border-radius:0 18px 18px 0;font-size:clamp(17px,2.6vw,21px);line-height:1.85;letter-spacing:-.018em;margin:18px 0 23px}
+    .gospel-flow {display:flex;gap:9px;flex-wrap:wrap;margin:9px 0 25px}
+    .gospel-flow span {border-radius:10px;background:var(--forest-light);color:var(--forest);padding:7px 11px;font-size:13px;font-weight:800}
+    .callout {border:1px solid #eadfcb;background:#faf7f0;padding:17px 20px;border-radius:16px;margin:22px 0;color:#6d5c47;font-size:14px;line-height:1.75}
+    .done-icon {height:75px;width:75px;border:2px solid #b8d8c5;border-radius:50%;display:grid;place-items:center;background:#eff8f0;color:#25745b;font-size:41px;font-weight:500;margin-bottom:24px}
+    .session-note {background:#f9f8f2;border:1px solid #e9e7da;border-radius:15px;padding:14px 17px;margin:18px 0 5px;color:#5c6455;font-size:14px}
+    .mini-title {color:var(--forest);font-size:14px;font-weight:850}
+    footer {font-size:12px;text-align:center;color:#87948c;padding:10px}
+    .modal-wrap {position:fixed;inset:0;z-index:100;background:#0f251fc4;display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+    .modal {background:var(--paper);border-radius:22px;width:min(580px,100%);max-height:calc(100dvh - 30px);display:flex;flex-direction:column;box-shadow:0 25px 75px #10251f55;overflow:hidden}
+    .modal-head {display:flex;align-items:center;justify-content:space-between;padding:21px 23px;border-bottom:1px solid var(--line)}
+    .modal-head h2 {font-size:20px;margin:0}
+    .close {font-size:24px;line-height:1;width:40px;height:40px;border:0;background:#eff3ef;border-radius:12px;color:var(--forest)}
+    .modal-body {overflow:auto;padding:21px 23px 26px}
+    .stat-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0}
+    .stat {background:#f2f7f2;border:1px solid #e1eae1;border-radius:14px;padding:12px 8px;text-align:center}
+    .stat b {font-size:27px;font-variant-numeric:tabular-nums;color:var(--forest);display:block}
+    .stat span {font-size:11px;color:#587062;font-weight:780}
+    .field {margin-bottom:18px}
+    .field label {font-weight:830;display:block;margin-bottom:8px}
+    select {width:100%;min-height:51px;border:1px solid #d5e1d6;padding:11px 14px;border-radius:13px;color:var(--forest);background:#fff}
+    .card-list {display:grid;gap:13px}
+    .guide-card {border:1px solid var(--line);border-radius:13px;padding:14px}
+    .guide-card strong {display:block;font-size:14px;line-height:1.6}
+    .guide-card p {margin:6px 0 0;font-size:12px;color:#586d61}
+    .guide-card .answer-key {color:var(--forest);font-weight:900}
+    .divider {height:1px;background:var(--line);margin:22px 0}
+    .text-button {border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;color:#8c655e;padding:10px 0;font-size:13px;font-weight:730}
+    .split-actions {display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .fallback-library {margin-top:24px;border:1px solid var(--line);padding:16px;border-radius:15px;background:#f8faf7}
+    .fallback-library>summary {font-weight:850;color:var(--forest);cursor:pointer;font-size:16px}
+    .fallback-section h3 {margin:20px 0 12px}
+    .fallback-item {border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;background:white}
+    .fallback-item summary {cursor:pointer;line-height:1.7}
+    .fallback-item summary b {color:var(--forest);padding-right:6px}
+    .fallback-answer {margin-top:12px;background:var(--forest-light);padding:12px 15px;border-radius:9px}
+    .fallback-answer strong {color:var(--forest)}
+    .fallback-answer p {margin:7px 0 0;font-size:14px}
+    .hidden {display:none!important}
+    @media (min-width:740px) {
+      .home-layout {display:grid;grid-template-columns:1fr .75fr;gap:26px;align-items:end}
+      .home-layout .intro-copy {grid-column:1/3}
+      .home-layout .buttons {grid-column:1;align-self:end}
+      .home-layout .info-aside {grid-column:2;grid-row:2;align-self:center;margin:0}
+      .answer-actions {grid-template-columns:1fr 1fr}
+      .answer-actions .primary {grid-column:1/3;grid-row:1}
+      .answer-actions .quiet {grid-column:1/3}
+    }
+    @media (max-width:440px) {
+      .brand small {font-size:10px;letter-spacing:0}
+      .brand strong {font-size:12px}
+      .logo {height:36px;width:36px;border-radius:11px}
+      .head-actions {gap:5px}
+      .tiny-btn {font-size:12px;padding:0 9px;min-height:36px}
+      .panel-inner {padding:25px 21px 29px}
+      .prompt {min-height:165px}
+      .step-chip {font-size:12px}
+      .scripture {font-size:12px}
+      .story-item {font-size:11px}
+    }
+    @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11h15v8a7.5 7.5 0 0 1-15 0v-8ZM21 13h2a3 3 0 0 1 0 6h-2M9 25h15" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 4c2 2-2 3.5 0 5M16 4c2 2-2 3.5 0 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div><small>수정빛교회 1청 미션 리트릿</small><strong>잠깐, 커피 한 잔?</strong></div>
+    </div>
+    <div class="head-actions">
+      <button type="button" class="tiny-btn" data-act="stats" aria-label="진행 기록 및 장소 설정">설정·기록</button>
+      <button type="button" class="tiny-btn dark" data-act="home">처음으로</button>
+    </div>
+  </header>
+  <main id="app" aria-live="polite">
+    <article class="panel" id="file-preview-fallback"><div class="panel-inner">
+      <p class="eyebrow">수정빛교회 1청 미션 리트릿</p>
+      <h1>잠깐,<br><span>커피 한 잔?</span></h1>
+      <p class="lead">질문 세 개로 만나는 한 가지 이야기.</p>
+      <div class="callout" role="status">
+        <strong>퀴즈 시작 버튼이 표시되지 않으신가요?</strong>
+        <p style="margin:8px 0 0">카카오톡·파일 앱의 HTML <strong>미리보기에서는 JavaScript 실행이 제한될 수 있습니다.</strong> 이 화면은 대체 안내입니다. 무작위 출제와 O/X 버튼을 사용하려면 웹사이트로 배포한 HTTPS 주소를 <strong>Safari 또는 Chrome</strong>에서 열어 주세요.</p>
+      </div>
+      <details class="fallback-library"><summary>현장 대체용 · OX 12문항 보기</summary>
+        <p class="subnote">인터넷이 안 될 때 진행자가 단계별로 문제 하나씩 읽고, 해당 문항을 눌러 정답을 확인하는 수동 참고자료입니다. 파일 미리보기 종류에 따라 펼치기 기능도 제한될 수 있습니다.</p>
+        <section class="fallback-section"><h3>1단계 · 사람의 가치</h3><details class="fallback-item"><summary><b>1-A</b> 성경은 사람의 가치가 연봉이나 성과에 따라 달라진다고 말한다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 창세기 1:27<p>성경은 사람의 근본 가치를 성과가 아니라 하나님의 형상대로 지음받았다는 데서 찾습니다.</p></div></details><details class="fallback-item"><summary><b>1-B</b> 성경은 모든 사람이 하나님의 형상대로 지음받았다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 창세기 1:27<p>직업, 연봉, 학력과 관계없이 인간에게 고유한 존엄이 있다고 말합니다.</p></div></details><details class="fallback-item"><summary><b>1-C</b> 예수님은 수고하고 무거운 짐 진 사람들에게 자신에게 오라고 말씀하셨다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 마태복음 11:28<p>예수님은 지치고 무거운 사람들을 밀어내기보다 자신에게 오라고 초대하셨습니다.</p></div></details><details class="fallback-item"><summary><b>1-D</b> 성경은 하나님이 사람의 겉모습보다 중심을 보신다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 사무엘상 16:7<p>사람은 외적인 조건을 많이 보지만, 성경은 하나님이 사람의 중심을 보신다고 말합니다.</p></div></details></section><section class="fallback-section"><h3>2단계 · 우리의 문제</h3><details class="fallback-item"><summary><b>2-A</b> 성경은 모든 사람이 죄를 범했다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 로마서 3:23<p>성경은 특정한 사람만이 아니라 모든 사람에게 죄의 문제가 있다고 말합니다.</p></div></details><details class="fallback-item"><summary><b>2-B</b> 성경에 따르면 착한 일을 충분히 하면 죄의 문제를 스스로 해결할 수 있다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 에베소서 2:8–9<p>성경은 구원을 인간의 공로나 실적의 결과로 설명하지 않습니다.</p></div></details><details class="fallback-item"><summary><b>2-C</b> 성경에서 죄는 단순한 실수일 뿐, 하나님과의 관계와는 상관이 없다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 이사야 59:2 · 로마서 3:23<p>죄는 행동 몇 가지를 넘어 하나님과의 관계가 깨어진 문제로 다뤄집니다.</p></div></details><details class="fallback-item"><summary><b>2-D</b> 성경은 죄의 삯을 사망이라고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 로마서 6:23<p>성경은 죄를 가볍게 보지 않지만, 같은 구절에서 하나님의 은사도 함께 말합니다.</p></div></details></section><section class="fallback-section"><h3>3단계 · 복음과 은혜</h3><details class="fallback-item"><summary><b>3-A</b> 성경은 구원을 인간이 노력해서 얻는 보상이 아니라 하나님의 선물이라고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 에베소서 2:8–9 · 로마서 6:23<p>복음의 핵심은 인간의 성취가 아니라 하나님의 은혜입니다.</p></div></details><details class="fallback-item"><summary><b>3-B</b> 기독교 복음의 핵심은 “더 착하게 살면 하나님께 인정받는다”이다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 로마서 5:8 · 에베소서 2:8–9<p>복음은 하나님이 먼저 죄인을 사랑하셔서 예수님을 보내셨다는 소식입니다.</p></div></details><details class="fallback-item"><summary><b>3-C</b> 성경은 예수님께서 우리의 죄를 위하여 죽으셨다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 고린도전서 15:3<p>예수님의 십자가 죽음은 기독교 복음의 중심 사건입니다.</p></div></details><details class="fallback-item"><summary><b>3-D</b> 성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 고린도전서 15:3–4<p>성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.</p></div></details></section>
+        <p class="subnote">퀴즈 뒤에 복음 설명을 들을지는 반드시 참여자에게 먼저 물어봐 주세요. 듣지 않아도 커피 쿠폰은 동일하게 지급합니다.</p>
+      </details>
+    </div></article>
+  </main>
+  <footer>2026년 10월 17일 토요일 · 12:00–14:00 · 수정빛교회</footer>
+</div>
+<div id="overlay"></div>
+<script>
+(() => {
+  'use strict';
+  const STORAGE_KEY = 'sujung_ox_v1_20261017';
+  const AREAS = [
+    { id: 'unassigned', label: '장소 미선택' },
+    { id: 'pangyo', label: '판교역 광장' },
+    { id: 'medical', label: '성남시의료원 앞 공원' },
+  ];
+  const CATEGORY = ['인간의 가치', '우리의 문제', '예수님과 은혜'];
+  // 공개된 성경 내용을 묻는 사실형 OX 문항. 설명은 수정빛교회 전도용 초안 기준.
+  const QUESTIONS = [
+    [
+      {id:'1-A', q:'성경은 사람의 가치가 연봉이나 성과에 따라 달라진다고 말한다.', key:'X', verse:'창세기 1:27', why:'성경은 사람의 근본 가치를 성과가 아니라 하나님의 형상대로 지음받았다는 데서 찾습니다.'},
+      {id:'1-B', q:'성경은 모든 사람이 하나님의 형상대로 지음받았다고 말한다.', key:'O', verse:'창세기 1:27', why:'직업, 연봉, 학력과 관계없이 인간에게 고유한 존엄이 있다고 말합니다.'},
+      {id:'1-C', q:'예수님은 수고하고 무거운 짐 진 사람들에게 자신에게 오라고 말씀하셨다.', key:'O', verse:'마태복음 11:28', why:'예수님은 지치고 무거운 사람들을 밀어내기보다 자신에게 오라고 초대하셨습니다.'},
+      {id:'1-D', q:'성경은 하나님이 사람의 겉모습보다 중심을 보신다고 말한다.', key:'O', verse:'사무엘상 16:7', why:'사람은 외적인 조건을 많이 보지만, 성경은 하나님이 사람의 중심을 보신다고 말합니다.'}
+    ],
+    [
+      {id:'2-A', q:'성경은 모든 사람이 죄를 범했다고 말한다.', key:'O', verse:'로마서 3:23', why:'성경은 특정한 사람만이 아니라 모든 사람에게 죄의 문제가 있다고 말합니다.'},
+      {id:'2-B', q:'성경에 따르면 착한 일을 충분히 하면 죄의 문제를 스스로 해결할 수 있다.', key:'X', verse:'에베소서 2:8–9', why:'성경은 구원을 인간의 공로나 실적의 결과로 설명하지 않습니다.'},
+      {id:'2-C', q:'성경에서 죄는 단순한 실수일 뿐, 하나님과의 관계와는 상관이 없다.', key:'X', verse:'이사야 59:2 · 로마서 3:23', why:'죄는 행동 몇 가지를 넘어 하나님과의 관계가 깨어진 문제로 다뤄집니다.'},
+      {id:'2-D', q:'성경은 죄의 삯을 사망이라고 말한다.', key:'O', verse:'로마서 6:23', why:'성경은 죄를 가볍게 보지 않지만, 같은 구절에서 하나님의 은사도 함께 말합니다.'}
+    ],
+    [
+      {id:'3-A', q:'성경은 구원을 인간이 노력해서 얻는 보상이 아니라 하나님의 선물이라고 말한다.', key:'O', verse:'에베소서 2:8–9 · 로마서 6:23', why:'복음의 핵심은 인간의 성취가 아니라 하나님의 은혜입니다.'},
+      {id:'3-B', q:'기독교 복음의 핵심은 “더 착하게 살면 하나님께 인정받는다”이다.', key:'X', verse:'로마서 5:8 · 에베소서 2:8–9', why:'복음은 하나님이 먼저 죄인을 사랑하셔서 예수님을 보내셨다는 소식입니다.'},
+      {id:'3-C', q:'성경은 예수님께서 우리의 죄를 위하여 죽으셨다고 말한다.', key:'O', verse:'고린도전서 15:3', why:'예수님의 십자가 죽음은 기독교 복음의 중심 사건입니다.'},
+      {id:'3-D', q:'성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.', key:'X', verse:'고린도전서 15:3–4', why:'성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.'}
+    ]
+  ];
+  const GOSPEL = '성경은 우리가 단순히 일을 잘하고 성과를 내기 때문에 가치 있는 존재라고 말하지 않고, 하나님의 형상대로 지음받은 존재라고 말합니다. 하지만 동시에 우리 모두가 죄를 범했고, 그 죄 때문에 하나님과의 관계가 깨어졌다고 말합니다. 이 문제는 우리가 더 착해지고 더 열심히 산다고 스스로 해결할 수 있는 문제가 아니라고 합니다. 그래서 하나님께서 우리를 사랑하셔서 예수 그리스도를 보내셨고, 예수님께서 우리의 죄를 위해 십자가에서 죽으시고 다시 살아나셨다는 것이 기독교 복음의 핵심입니다. 구원은 우리가 잘해서 받는 보상이 아니라 예수 그리스도를 믿는 사람에게 하나님께서 은혜로 주시는 선물이라고 성경은 말합니다.';
+  const makeStats = () => ({ completed:0, gospel:0, conversation:0 });
+  const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, conversation:false, area:'unassigned'});
+  const defaults = () => ({area:'unassigned',stats:{unassigned:makeStats(),pangyo:makeStats(),medical:makeStats()}, bags:[[],[],[]], last:[null,null,null],session:blankSession()});
+  let state = defaults();
+  let modal = '';
+  const app = document.getElementById('app');
+  const overlay = document.getElementById('overlay');
+  const safe = (s) => String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  function hydrate() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const incoming = JSON.parse(raw);
+      const fresh = defaults();
+      if (AREAS.some(x=>x.id===incoming.area)) fresh.area = incoming.area;
+      for (const area of AREAS) for (const key of Object.keys(makeStats())) {
+        const n = incoming.stats?.[area.id]?.[key];
+        if (Number.isSafeInteger(n) && n>=0) fresh.stats[area.id][key]=n;
+      }
+      if (Array.isArray(incoming.bags) && incoming.bags.length===3) {
+        incoming.bags.forEach((bag,i)=>{
+          if(Array.isArray(bag) && bag.length<=4 && bag.every(id=>QUESTIONS[i].some(q=>q.id===id)) && new Set(bag).size===bag.length) fresh.bags[i]=bag;
+        });
+      }
+      if(Array.isArray(incoming.last) && incoming.last.length===3) fresh.last=incoming.last;
+      const s = incoming.session;
+      if (s && ['home','quiz','bridge','gospel','done'].includes(s.phase) && Number.isInteger(s.stage) && s.stage>=0 && s.stage<=2 && Array.isArray(s.questionIds) && (s.phase==='home'||(s.questionIds.length===3 && s.questionIds.every((id,i)=>QUESTIONS[i].some(q=>q.id===id)))) && Array.isArray(s.choices) && s.choices.length===3 && s.choices.every(v=>v===null||v==='O'||v==='X') && AREAS.some(a=>a.id===s.area)) {
+        fresh.session = {...blankSession(),...s};
+        fresh.session.counted=!!s.counted;
+        fresh.session.gospel=!!s.gospel;
+        fresh.session.conversation=!!s.conversation;
+      }
+      state = fresh;
+    } catch(err) { console.warn('로컬 기록을 복원하지 못했습니다.',err); }
+  }
+  function persist(){ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){/* 저장이 막힌 환경에서도 퀴즈는 계속 동작 */} }
+  function rand(max){
+    if(globalThis.crypto?.getRandomValues){const a=new Uint32Array(1); const limit=Math.floor(4294967296/max)*max;do{crypto.getRandomValues(a)}while(a[0]>=limit);return a[0]%max;}
+    return Math.floor(Math.random()*max);
+  }
+  function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=rand(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+  function draw(stage){
+    let bag=state.bags[stage];
+    if(!bag.length){bag=shuffle(QUESTIONS[stage].map(q=>q.id)); if(bag.length>1 && bag[0]===state.last[stage]){[bag[0],bag[1]]=[bag[1],bag[0]];}}
+    const chosen=bag.shift();state.bags[stage]=bag;state.last[stage]=chosen;return chosen;
+  }
+  function getQuestion(){const s=state.session;return QUESTIONS[s.stage].find(q=>q.id===s.questionIds[s.stage]);}
+  function statsFor(){return state.stats[state.session.area]||state.stats.unassigned;}
+  function moveTop(){window.scrollTo(0,0);}
+  function start(){state.session={...blankSession(), phase:'quiz',questionIds:[0,1,2].map(draw),area:state.area};persist();render();moveTop();}
+  function goHome(){
+    if(!['home','done'].includes(state.session.phase) && !confirm('진행 중인 퀴즈를 종료하고 처음으로 돌아갈까요?')) return;
+    state.session=blankSession();persist();render();moveTop();
+  }
+  function choose(value){const s=state.session;if(s.phase!=='quiz'||s.choices[s.stage]!==null)return;s.choices[s.stage]=value;persist();render();moveTop();}
+  function redraw(){const s=state.session;if(s.phase!=='quiz'||s.choices[s.stage]!==null)return;s.questionIds[s.stage]=draw(s.stage);persist();render();}
+  function next(){const s=state.session;if(s.phase!=='quiz'||!s.choices[s.stage])return;if(s.stage<2){s.stage++;}else{s.phase='bridge';if(!s.counted){statsFor().completed++;s.counted=true;}}persist();render();moveTop();}
+  function bridge(yes){const s=state.session;if(s.phase!=='bridge')return;s.phase=yes?'gospel':'done';persist();render();moveTop();}
+  function gospelDone(){const s=state.session;if(s.phase!=='gospel')return;s.phase='done';if(!s.gospel){s.gospel=true;statsFor().gospel++;}persist();render();moveTop();}
+  function toggleConversation(){const s=state.session;if(s.phase!=='done'||!s.gospel)return;s.conversation=!s.conversation;statsFor().conversation=Math.max(0,statsFor().conversation+(s.conversation?1:-1));persist();render();}
+  function progress(){return `<div class="progress" role="progressbar" aria-label="퀴즈 진행률" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${state.session.stage+1}">${CATEGORY.map((_,i)=>`<span class="progress-piece ${i<state.session.stage?'done':i===state.session.stage?'active':''}"></span>`).join('')}</div>`;}
+  function homeUI(){return `<article class="panel"><div class="top-pattern"></div><div class="panel-inner home-layout">
+    <div class="intro-copy"><p class="eyebrow">2026 MISSION RETREAT · 10.17</p><h1>잠깐,<br><span>커피 한 잔?</span></h1><div class="hero-rule"></div><p class="lead">질문 세 개로 만나는 한 가지 이야기.<br>성경이 말하는 사람의 가치와 복음을 OX 퀴즈로 함께 살펴봅니다.</p><div class="steps"><span class="step-chip"><b>01</b> 사람의 가치</span><span class="step-chip"><b>02</b> 우리의 문제</span><span class="step-chip"><b>03</b> 복음과 은혜</span></div></div>
+    <div class="buttons"><button class="primary" data-act="start">OX 퀴즈 시작 <span aria-hidden="true">→</span></button><button class="secondary" data-act="guide">진행자용 12문항 보기</button></div>
+    <div class="info-aside"><p class="mini-title">진행 안내</p><p class="subnote" style="margin-top:7px">각 단계에서 한 문제씩 무작위로 나옵니다. O 또는 X를 누르면 정답과 성경 근거가 표시됩니다.</p><p class="subnote"><strong>커피 쿠폰은 정답이나 복음 설명 청취 여부와 관계없이</strong> OX 세 문항에 참여하시면 드립니다.</p><p class="metadata">${safe(AREAS.find(a=>a.id===state.area)?.label||'')} · 진행기기별 독립 운영</p></div>
+  </div></article>`;}
+  function quizUI(){const s=state.session;const q=getQuestion();const answered=s.choices[s.stage]!==null;return `<article class="panel"><div class="panel-inner">
+    <div class="section-top"><span class="round-label">STEP ${s.stage+1} · ${CATEGORY[s.stage]}</span><span class="round-count">${s.stage+1} / 3</span></div>${progress()}
+    <div class="prompt-kicker">성경에서는 어떻게 말할까요?</div><div class="prompt" id="question-text">${safe(q.q)}</div>
+    ${!answered?`<div class="ox-grid" role="group" aria-label="OX 정답 선택"><button class="ox" data-act="choose-o" aria-label="O 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 선택">X<small>아니다</small></button></div><button class="quiet" style="margin-top:13px" data-act="redraw">다른 카드 뽑기</button><p class="wide-note">정답은 선택 후 공개됩니다 · 문항 ${safe(q.id)}</p>`:
+    `<div class="answer-panel" id="answer"><p class="correct">정답은 ${q.key}입니다.</p><p>${safe(q.why)}</p><span class="scripture">${safe(q.verse)}</span></div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 질문으로'} <span aria-hidden="true">→</span></button></div><p class="wide-note">고르신 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
+  </div></article>`;}
+  function bridgeUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">QUIZ COMPLETE</p><h2>세 개의 질문은<br>하나의 이야기로 이어집니다.</h2><p class="lead">사람의 가치와 죄의 문제, 그리고 예수 그리스도의 복음으로 이어지는 이야기입니다.</p><div class="story-steps"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div><div class="quote">“괜찮으시면 이 세 질문이 어떻게 연결되는지 1분만 말씀드려도 될까요?”</div><div class="buttons"><button class="primary" data-act="bridge-yes">네, 들어볼게요</button><button class="quiet" data-act="bridge-no">아니요, 여기까지 들을게요</button></div><p class="subnote">어느 쪽을 선택하셔도 OX 참여 선물은 똑같이 드립니다.</p></div></article>`;}
+  function gospelUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">ONE STORY · ABOUT 1 MINUTE</p><h2>우리가 전하고 싶은<br>한 가지 이야기</h2><div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div><div class="quote">${safe(GOSPEL)}</div><p class="mini-title">설명 후 이어갈 질문</p><p class="lead" style="font-size:16px">“혹시 방금 들으신 내용 중에 궁금하시거나 이야기해 보고 싶은 부분이 있으세요?”</p><div class="callout">원하지 않는 사람에게 결신이나 기도를 강요하지 않습니다. 질문은 듣고, 모르는 것은 정확히 확인하겠다고 안내합니다.</div><button class="primary" data-act="gospel-done">설명 마치고 쿠폰 안내 <span aria-hidden="true">→</span></button></div></article>`;}
+  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>커피 쿠폰 지급 안내</strong><div style="margin-top:5px">OX 3문항 참여를 마쳤으므로 정답 개수나 설명 청취 여부와 상관없이 1인 1매를 전달해 주세요.</div></div>
+    ${s.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${s.conversation?'✓ 추가 대화 희망 기록됨 · 취소하기':'추가 대화로 이어졌어요 (기록)'}</button></div>`:''}
+    <div class="buttons"><button class="primary" data-act="start">다음 참여자 시작 <span aria-hidden="true">→</span></button><button class="quiet" data-act="home">처음 화면으로</button></div><p class="subnote">후속 대화나 연락처 제공은 참여자가 먼저 원할 때만 안내해 주세요. 앱은 개인정보를 수집하지 않습니다.</p></div></article>`;}
+  function render(){const phase=state.session.phase;app.innerHTML=phase==='home'?homeUI():phase==='quiz'?quizUI():phase==='bridge'?bridgeUI():phase==='gospel'?gospelUI():doneUI();renderModal();}
+  function getTotals(){return Object.values(state.stats).reduce((acc,obj)=>{Object.keys(acc).forEach(k=>acc[k]+=obj[k]);return acc;},makeStats());}
+  function renderModal(){
+    if(!modal){overlay.innerHTML='';return;}
+    if(modal==='stats'){
+      const stats=state.stats[state.area]||makeStats(),total=getTotals();
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">운영 설정 및 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><div class="field"><label for="area-select">현재 진행 장소</label><select id="area-select">${AREAS.map(a=>`<option value="${a.id}" ${state.area===a.id?'selected':''}>${safe(a.label)}</option>`).join('')}</select><p class="subnote">퀴즈 도중 장소를 바꿔도 해당 회차의 기록은 시작 장소에 반영됩니다.</p></div><div class="mini-title">선택한 장소의 이 기기 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+    } else if(modal==='guide') {
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
+    }
+    overlay.querySelector('[data-act="close"]')?.focus({preventScroll:true});
+  }
+  let wakeLock=null;
+  async function toggleWake(){
+    if(wakeLock){await wakeLock.release();wakeLock=null;renderModal();return;}
+    if(!('wakeLock' in navigator)) {alert('이 브라우저는 화면 켜짐 유지를 지원하지 않습니다. 기기 설정의 자동 잠금을 조정해 주세요.');return;}
+    try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;if(modal==='stats')renderModal();});renderModal();}catch(e){alert('현재 환경에서는 화면 유지 기능을 사용할 수 없습니다. 기기 설정을 확인해 주세요.');}
+  }
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-act]');if(!btn)return;
+    const act=btn.dataset.act;
+    if(act==='dismiss' && e.target!==btn)return;
+    switch(act){
+      case 'home':goHome();break;
+      case 'start':start();break;
+      case 'choose-o':choose('O');break;
+      case 'choose-x':choose('X');break;
+      case 'redraw':redraw();break;
+      case 'next':next();break;
+      case 'bridge-yes':bridge(true);break;
+      case 'bridge-no':bridge(false);break;
+      case 'gospel-done':gospelDone();break;
+      case 'conversation':toggleConversation();break;
+      case 'stats':modal='stats';renderModal();break;
+      case 'guide':modal='guide';renderModal();break;
+      case 'close':case 'dismiss':modal='';renderModal();break;
+      case 'reset-stats':if(confirm('이 기기에 저장된 전체 기록을 초기화할까요? 복원할 수 없습니다.')){for(const a of AREAS)state.stats[a.id]=makeStats();state.session=blankSession();modal='stats';persist();render();}break;
+      case 'wake':toggleWake();break;
+    }
+  });
+  document.addEventListener('change',e=>{
+    if(e.target.id==='area-select'&&AREAS.some(a=>a.id===e.target.value)){state.area=e.target.value;persist();render();}
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&modal){modal='';renderModal();return;}
+    if(modal||e.repeat||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
+    if(state.session.phase==='quiz'){
+      if(state.session.choices[state.session.stage]===null){if(['o','O','1'].includes(e.key))choose('O');if(['x','X','2'].includes(e.key))choose('X');}
+      else if(e.key==='ArrowRight')next();
+    }
+  });
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  hydrate();render();
+})();
+</script>
+</body>
+</html>
