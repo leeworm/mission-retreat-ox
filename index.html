@@ -337,6 +337,11 @@
     .guide-verse {background:#f5f3ef;padding:9px;border-radius:8px;color:#464a4c!important}
     .gospel-scripture {font-size:12px;color:#747978;line-height:1.7;margin:7px 0 22px}
     @media (max-width:440px){.bible-passage{padding:15px 15px 13px}.bible-text{font-size:16px}}
+    .bible-passage-group {display:grid;gap:13px;margin:13px 0 18px}
+    .bible-passage-group .bible-passage {margin:0}
+    .bible-passage-group .bible-label {font-size:13px;color:#755b3d}
+    .guide-verse strong {color:#424748}
+    .guide-verse a {display:inline-block;color:#566676;margin-left:4px;font-weight:700}
   </style>
 </head>
 <body>
@@ -400,6 +405,64 @@
       {id:'3-D', q:'성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.', key:'X', verse:'고린도전서 15:3–4', why:'성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.', bibleText:'장사 지낸 바 되셨다가 성경대로 사흘 만에 다시 살아나사', bibleUrl:'https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1co&chap=15&sec=4&version=GAE', excerpt:false}
     ]
   ];
+  // 각 문항의 서로 다른 성경 구절을 개별 표시합니다. 여러 절(2:8–9 등)도 분리합니다.
+  const BIBLE_VERSES = {
+      "eph2-8": {
+          "label": "에베소서 2:8",
+          "text": "너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 … 하나님의 선물이라",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=eph&chap=2&sec=8&version=GAE",
+          "excerpt": true
+      },
+      "eph2-9": {
+          "label": "에베소서 2:9",
+          "text": "행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=eph&chap=2&sec=9&version=GAE",
+          "excerpt": false
+      },
+      "isa59-2": {
+          "label": "이사야 59:2",
+          "text": "오직 너희 죄악이 너희와 너희 하나님 사이를 갈라 놓았고 너희 죄가 그의 얼굴을 가리어서 너희에게서 듣지 않으시게 함이니라",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=isa&chap=59&sec=2&version=GAE",
+          "excerpt": false
+      },
+      "rom3-23": {
+          "label": "로마서 3:23",
+          "text": "모든 사람이 죄를 범하였으매 하나님의 영광에 이르지 못하더니",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=3&sec=23&version=GAE",
+          "excerpt": false
+      },
+      "rom6-23": {
+          "label": "로마서 6:23",
+          "text": "죄의 삯은 사망이요 하나님의 은사는 그리스도 예수 우리 주 안에 있는 영생이니라",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=6&sec=23&version=GAE",
+          "excerpt": false
+      },
+      "rom5-8": {
+          "label": "로마서 5:8",
+          "text": "우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=rom&chap=5&sec=8&version=GAE",
+          "excerpt": false
+      },
+      "1co15-3": {
+          "label": "고린도전서 15:3",
+          "text": "내가 받은 것을 먼저 너희에게 전하였노니 이는 성경대로 그리스도께서 우리 죄를 위하여 죽으시고",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1co&chap=15&sec=3&version=GAE",
+          "excerpt": false
+      },
+      "1co15-4": {
+          "label": "고린도전서 15:4",
+          "text": "장사 지낸 바 되셨다가 성경대로 사흘 만에 다시 살아나사",
+          "url": "https://www.bskorea.or.kr/bible/korbibReadpage.php?book=1co&chap=15&sec=4&version=GAE",
+          "excerpt": false
+      }
+  };
+  const QUESTION_REFERENCES = {"2-B":["eph2-8","eph2-9"],"2-C":["isa59-2","rom3-23"],"3-A":["eph2-8","eph2-9","rom6-23"],"3-B":["rom5-8","eph2-8","eph2-9"],"3-D":["1co15-3","1co15-4"]};
+  function getPassages(q){
+    const keys=QUESTION_REFERENCES[q.id];
+    return keys
+      ? keys.map(key=>BIBLE_VERSES[key])
+      : [{label:q.verse,text:q.bibleText,url:q.bibleUrl,excerpt:q.excerpt}];
+  }
   const GOSPEL = '하나님은 우리를 창조하시고 사랑하십니다. 하지만 성경은 우리 모두가 죄를 범했고, 하나님을 떠나 자기 뜻대로 살아왔다고 말합니다. 죄는 우리를 하나님과 갈라놓으며, 아무리 착한 일을 많이 해도 스스로 해결할 수 없습니다. 그래서 하나님의 아들 예수 그리스도께서 이 땅에 오셔서 우리의 죄를 대신해 십자가에서 죽으시고, 사흘 만에 다시 살아나셨습니다. 예수님은 죄와 죽음에서 우리를 구원하시는 구주이십니다. 성경은 우리에게 죄에서 돌이켜 회개하고 예수 그리스도를 구주이자 주님으로 믿으라고 초대합니다. 예수님을 믿는 사람은 은혜로 죄 사함을 받고 하나님과 화목하며 영원한 생명을 얻습니다. 이 이야기가 더 궁금하시다면 편하게 질문해 주세요.';
   const makeStats = () => ({ completed:0, gospel:0 });
   const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, area:'pangyo'});
@@ -484,10 +547,12 @@
     ${!answered?`<div class="ox-grid" role="group" aria-label="참여자가 O 또는 X를 선택하는 영역"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="quiet" data-act="redraw">다른 문제로 바꾸기</button></div><p class="wide-note">답을 선택하면 정답이 공개됩니다 · 문항 ${safe(q.id)}</p>`:
     `<div class="answer-panel" id="answer">
     <p class="correct">정답은 ${q.key}입니다.</p>
-    <div class="bible-passage">
-      <p class="bible-label">개역개정 성경 ${q.excerpt?'· 일부 발췌':''}</p>
-      <blockquote class="bible-text">${safe(q.bibleText)}</blockquote>
-      <a class="bible-source" href="${safe(q.bibleUrl)}" target="_blank" rel="noopener noreferrer">${safe(q.verse)} · 대한성서공회에서 본문 보기 ↗</a>
+    <div class="bible-passage-group" aria-label="관련 개역개정 성경 구절">
+      ${getPassages(q).map(p=>`<div class="bible-passage">
+        <p class="bible-label">${safe(p.label)} · 개역개정${p.excerpt?' · 일부 발췌':''}</p>
+        <blockquote class="bible-text">${safe(p.text)}</blockquote>
+        <a class="bible-source" href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">대한성서공회에서 ${safe(p.label)} 보기 ↗</a>
+      </div>`).join('')}
     </div>
     <p class="answer-explain">${safe(q.why)}</p>
     <p class="bible-copyright">성경전서 개역개정판 © 대한성서공회 1998</p>
@@ -529,7 +594,7 @@
       const stats=state.stats.pangyo,total=getTotals();
       overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p class="guide-verse">${safe(q.bibleText)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p>${getPassages(q).map(p=>`<p class="guide-verse"><strong>${safe(p.label)}</strong> · ${safe(p.text)} <a href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">원문 ↗</a></p>`).join('')}<p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
     overlay.querySelector('[data-act="close"]')?.focus({preventScroll:true});
   }
