@@ -342,6 +342,15 @@
     .bible-passage-group .bible-label {font-size:13px;color:#755b3d}
     .guide-verse strong {color:#424748}
     .guide-verse a {display:inline-block;color:#566676;margin-left:4px;font-weight:700}
+    /* 시민이 직접 터치하는 화면: 운영 요소는 메인 진행에서 분리 */
+    .stats-icon-btn {width:40px;min-width:40px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+    .stats-icon-btn svg {width:19px;height:19px}
+    .participant-actions {margin-top:23px}
+    .participant-actions .primary {width:100%;min-height:58px}
+    .answer-panel .chosen-answer {font-size:13px;color:#626e72;margin:0 0 10px}
+    .answer-panel .chosen-answer b {color:#354449;font-size:16px}
+    .stage-help {font-size:14px;font-weight:650;color:#555d5c;line-height:1.65}
+    @media(max-width:440px){.stats-icon-btn{width:40px;min-width:40px}}
   </style>
 </head>
 <body>
@@ -355,7 +364,7 @@
       <div><small>수정빛교회 1청 미션 리트릿</small><strong>잠깐, 커피 한 잔?</strong></div>
     </div>
     <div class="head-actions">
-      <button type="button" class="tiny-btn" data-act="stats" aria-label="진행 기록">진행 기록</button>
+      <button type="button" class="tiny-btn stats-icon-btn" data-act="stats" aria-label="기록 및 설정" title="기록 및 설정"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2.2" fill="white"/><circle cx="15" cy="12" r="2.2" fill="white"/><circle cx="10" cy="17" r="2.2" fill="white"/></svg></button>
       <button type="button" class="tiny-btn dark" data-act="home">처음으로</button>
     </div>
   </header>
@@ -368,10 +377,10 @@
         <strong>퀴즈 시작 버튼이 표시되지 않으신가요?</strong>
         <p style="margin:8px 0 0">카카오톡·파일 앱의 HTML <strong>미리보기에서는 JavaScript 실행이 제한될 수 있습니다.</strong> 이 화면은 대체 안내입니다. 무작위 출제와 O/X 버튼을 사용하려면 웹사이트로 배포한 HTTPS 주소를 <strong>Safari 또는 Chrome</strong>에서 열어 주세요.</p>
       </div>
-      <details class="fallback-library"><summary>현장 대체용 · OX 12문항 보기</summary>
-        <p class="subnote">인터넷이 안 될 때 진행자가 단계별로 문제 하나씩 읽고, 해당 문항을 눌러 정답을 확인하는 수동 참고자료입니다. 파일 미리보기 종류에 따라 펼치기 기능도 제한될 수 있습니다.</p>
+      <details class="fallback-library"><summary>O/X 12문항 펼쳐보기</summary>
+        <p class="subnote">인터넷 연결이 어려운 경우 아래 문항을 펼쳐 문제와 정답을 확인할 수 있습니다. 파일 미리보기 환경에 따라 펼치기 기능이 제한될 수 있습니다.</p>
         <section class="fallback-section"><h3>1단계 · 사람의 가치</h3><details class="fallback-item"><summary><b>1-A</b> 성경은 사람의 가치가 연봉이나 성과에 따라 달라진다고 말한다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 창세기 1:27<p>성경은 사람의 근본 가치를 성과가 아니라 하나님의 형상대로 지음받았다는 데서 찾습니다.</p></div></details><details class="fallback-item"><summary><b>1-B</b> 성경은 모든 사람이 하나님의 형상대로 지음받았다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 창세기 1:27<p>직업, 연봉, 학력과 관계없이 인간에게 고유한 존엄이 있다고 말합니다.</p></div></details><details class="fallback-item"><summary><b>1-C</b> 예수님은 수고하고 무거운 짐 진 사람들에게 자신에게 오라고 말씀하셨다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 마태복음 11:28<p>예수님은 지치고 무거운 사람들을 밀어내기보다 자신에게 오라고 초대하셨습니다.</p></div></details><details class="fallback-item"><summary><b>1-D</b> 성경은 하나님이 사람의 겉모습보다 중심을 보신다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 사무엘상 16:7<p>사람은 외적인 조건을 많이 보지만, 성경은 하나님이 사람의 중심을 보신다고 말합니다.</p></div></details></section><section class="fallback-section"><h3>2단계 · 우리의 문제</h3><details class="fallback-item"><summary><b>2-A</b> 성경은 모든 사람이 죄를 범했다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 로마서 3:23<p>성경은 특정한 사람만이 아니라 모든 사람에게 죄의 문제가 있다고 말합니다.</p></div></details><details class="fallback-item"><summary><b>2-B</b> 성경에 따르면 착한 일을 충분히 하면 죄의 문제를 스스로 해결할 수 있다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 에베소서 2:8–9<p>성경은 구원을 인간의 공로나 실적의 결과로 설명하지 않습니다.</p></div></details><details class="fallback-item"><summary><b>2-C</b> 성경에서 죄는 단순한 실수일 뿐, 하나님과의 관계와는 상관이 없다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 이사야 59:2 · 로마서 3:23<p>죄는 행동 몇 가지를 넘어 하나님과의 관계가 깨어진 문제로 다뤄집니다.</p></div></details><details class="fallback-item"><summary><b>2-D</b> 성경은 죄의 삯을 사망이라고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 로마서 6:23<p>성경은 죄를 가볍게 보지 않지만, 같은 구절에서 하나님의 은사도 함께 말합니다.</p></div></details></section><section class="fallback-section"><h3>3단계 · 복음과 은혜</h3><details class="fallback-item"><summary><b>3-A</b> 성경은 구원을 인간이 노력해서 얻는 보상이 아니라 하나님의 선물이라고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 에베소서 2:8–9 · 로마서 6:23<p>복음의 핵심은 인간의 성취가 아니라 하나님의 은혜입니다.</p></div></details><details class="fallback-item"><summary><b>3-B</b> 기독교 복음의 핵심은 “더 착하게 살면 하나님께 인정받는다”이다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 로마서 5:8 · 에베소서 2:8–9<p>복음은 하나님이 먼저 죄인을 사랑하셔서 예수님을 보내셨다는 소식입니다.</p></div></details><details class="fallback-item"><summary><b>3-C</b> 성경은 예수님께서 우리의 죄를 위하여 죽으셨다고 말한다.</summary><div class="fallback-answer"><strong>정답 O</strong> · 고린도전서 15:3<p>예수님의 십자가 죽음은 기독교 복음의 중심 사건입니다.</p></div></details><details class="fallback-item"><summary><b>3-D</b> 성경은 예수님의 죽음으로 이야기가 끝났다고 말한다.</summary><div class="fallback-answer"><strong>정답 X</strong> · 고린도전서 15:3–4<p>성경은 예수님의 십자가 죽음뿐 아니라 부활을 함께 선포합니다.</p></div></details></section>
-        <p class="subnote">퀴즈 뒤에 복음 설명을 들을지는 반드시 참여자에게 먼저 물어봐 주세요. 듣지 않아도 커피 쿠폰은 동일하게 지급합니다.</p>
+        <p class="subnote">복음 설명은 원할 때만 들으실 수 있습니다. 듣지 않으셔도 참여 선물은 동일합니다.</p>
       </details>
     </div></article>
   </main>
@@ -524,7 +533,6 @@
     state.session=blankSession();persist();render();moveTop();
   }
   function choose(value){const s=state.session;if(s.phase!=='quiz'||s.choices[s.stage]!==null)return;s.choices[s.stage]=value;persist();render();moveTop();}
-  function redraw(){const s=state.session;if(s.phase!=='quiz'||s.choices[s.stage]!==null)return;s.questionIds[s.stage]=draw(s.stage);persist();render();}
   function next(){const s=state.session;if(s.phase!=='quiz'||!s.choices[s.stage])return;if(s.stage<2){s.stage++;}else{s.phase='bridge';if(!s.counted){statsFor().completed++;s.counted=true;}}persist();render();moveTop();}
   function bridge(yes){const s=state.session;if(s.phase!=='bridge')return;s.phase=yes?'gospel':'done';persist();render();moveTop();}
   function gospelDone(){const s=state.session;if(s.phase!=='gospel')return;s.phase='done';if(!s.gospel){s.gospel=true;statsFor().gospel++;}persist();render();moveTop();}
@@ -542,21 +550,23 @@
   </div></article>`;}
   function quizUI(){const s=state.session;const q=getQuestion();const answered=s.choices[s.stage]!==null;return `<article class="panel"><div class="panel-inner">
     <div class="section-top"><span class="round-label">STEP ${s.stage+1} · ${CATEGORY[s.stage]}</span><span class="round-count">${s.stage+1} / 3</span></div>${progress()}
-    ${!answered?`<p class="stage-help"><b>시민에게 화면을 보여주세요.</b> O/X를 직접 누르시거나 말로 답하셔도 됩니다.</p>`:`<div class="operator-bar">진행자 · 정답을 설명해 주세요</div>`}
+    <p class="stage-help">${answered?'정답과 성경 말씀을 확인해 보세요.':'맞다고 생각하면 O, 아니라면 X를 눌러주세요.'}</p>
     <div class="prompt-kicker">성경에서는 어떻게 말할까요?</div><div class="prompt" id="question-text">${safe(q.q)}</div>
-    ${!answered?`<div class="ox-grid" role="group" aria-label="참여자가 O 또는 X를 선택하는 영역"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="quiet" data-act="redraw">다른 문제로 바꾸기</button></div><p class="wide-note">답을 선택하면 정답이 공개됩니다 · 문항 ${safe(q.id)}</p>`:
+    ${!answered?`<div class="ox-grid" role="group" aria-label="O 또는 X 중 하나를 선택"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><p class="wide-note">답을 선택하면 정답과 관련 성경 구절이 나옵니다.</p>`:
     `<div class="answer-panel" id="answer">
-    <p class="correct">정답은 ${q.key}입니다.</p>
-    <div class="bible-passage-group" aria-label="관련 개역개정 성경 구절">
-      ${getPassages(q).map(p=>`<div class="bible-passage">
-        <p class="bible-label">${safe(p.label)} · 개역개정${p.excerpt?' · 일부 발췌':''}</p>
-        <blockquote class="bible-text">${safe(p.text)}</blockquote>
-        <a class="bible-source" href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">대한성서공회에서 ${safe(p.label)} 보기 ↗</a>
-      </div>`).join('')}
+      <p class="chosen-answer">내가 고른 답: <b>${safe(s.choices[s.stage])}</b></p>
+      <p class="correct">정답은 ${q.key}입니다.</p>
+      <div class="bible-passage-group" aria-label="관련 개역개정 성경 구절">
+        ${getPassages(q).map(p=>`<div class="bible-passage">
+          <p class="bible-label">${safe(p.label)} · 개역개정${p.excerpt?' · 일부 발췌':''}</p>
+          <blockquote class="bible-text">${safe(p.text)}</blockquote>
+          <a class="bible-source" href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">대한성서공회에서 ${safe(p.label)} 보기 ↗</a>
+        </div>`).join('')}
+      </div>
+      <p class="answer-explain">${safe(q.why)}</p>
+      <p class="bible-copyright">성경전서 개역개정판 © 대한성서공회 1998</p>
     </div>
-    <p class="answer-explain">${safe(q.why)}</p>
-    <p class="bible-copyright">성경전서 개역개정판 © 대한성서공회 1998</p>
-  </div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 문제 보여주기'} <span aria-hidden="true">→</span></button></div></div><p class="wide-note">참여자의 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
+    <div class="participant-actions"><button class="primary" data-act="next">${s.stage===2?'퀴즈 마치기':'다음 질문'} <span aria-hidden="true">→</span></button></div>`}
   </div></article>`;}
   function bridgeUI(){return `<article class="panel"><div class="panel-inner">
     <p class="eyebrow">OX 퀴즈 완료 · 참여해 주셔서 감사합니다</p>
@@ -592,9 +602,9 @@
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
       const stats=state.stats.pangyo,total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p>${getPassages(q).map(p=>`<p class="guide-verse"><strong>${safe(p.label)}</strong> · ${safe(p.text)} <a href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">원문 ↗</a></p>`).join('')}<p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">전체 O/X 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">아래에서 각 문제와 관련 성경 구절을 확인할 수 있습니다.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p>${getPassages(q).map(p=>`<p class="guide-verse"><strong>${safe(p.label)}</strong> · ${safe(p.text)} <a href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">원문 ↗</a></p>`).join('')}<p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
     overlay.querySelector('[data-act="close"]')?.focus({preventScroll:true});
   }
@@ -613,7 +623,6 @@
       case 'start':start();break;
       case 'choose-o':choose('O');break;
       case 'choose-x':choose('X');break;
-      case 'redraw':redraw();break;
       case 'next':next();break;
       case 'bridge-yes':bridge(true);break;
       case 'bridge-no':bridge(false);break;
