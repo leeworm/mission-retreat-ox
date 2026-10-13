@@ -243,6 +243,77 @@
       .prompt {min-height:unset;font-size:clamp(25px,7.0vw,32px);margin-bottom:22px}
       .ox {min-height:154px}
     }
+
+    /* 교회 로고를 중심에 둔 중립형 컬러 시스템 */
+    :root {
+      --bg:#f6f5f2; --paper:#ffffff; --ink:#24272a; --muted:#686e72;
+      --forest:#2f3538; --forest-2:#424a4e; --forest-light:#f0f1f0;
+      --line:#e2e3e0; --orange:#a56f46; --orange-light:#fbf5ef;
+      --shadow:0 22px 65px rgba(32,34,37,.07),0 2px 10px rgba(32,34,37,.035);
+      --radius:24px;
+    }
+    body {background:linear-gradient(155deg,#fff 0%,#f8f7f4 50%,#f1f0ec 100%);color:var(--ink)}
+    .shell {max-width:1020px}
+    .topbar {border-bottom:1px solid #e8e6e0;padding-bottom:20px}
+    .brand {gap:12px}
+    .logo {width:45px;height:45px;border:1px solid #e7e6e1;border-radius:12px;background:white;box-shadow:none;overflow:hidden;padding:7px;color:#252a2c}
+    .logo img {width:100%;height:100%;object-fit:contain;display:block}
+    .logo .church-fallback {display:none;place-items:center;width:100%;height:100%;font-size:19px;font-weight:800;color:#303538}
+    .brand small {color:#757b80;font-weight:650;letter-spacing:0}
+    .brand strong {color:#202428}
+    .tiny-btn {border-radius:11px;border-color:#dedfda;background:#fff;color:#33383b}
+    .tiny-btn.dark {background:#33383b;border-color:#33383b;color:#fff}
+    main {padding-top:32px}
+    .panel {background:#fff;border:1px solid #e9e7e2;box-shadow:var(--shadow)}
+    .top-pattern {display:none}
+    .eyebrow {color:#767064;letter-spacing:.025em;font-size:12px}
+    h1 span {color:#252a2d}
+    .hero-rule {background:#aa8b68;width:56px;height:3px;margin:23px 0}
+    p.lead {color:#5e6266}
+    .step-chip {border:1px solid #e8e5df;background:#fbfaf8;color:#686b6d}
+    .step-chip b {color:#9d7851}
+    .primary {background:#303538;box-shadow:0 9px 18px #20242818}
+    .primary:hover {background:#454c50}
+    .secondary {background:#f2f3f1;color:#2e3437;border-color:#e2e4e1}
+    .quiet {color:#5b6266}
+    .round-label {background:#f0f1ee;color:#353b3d}
+    .progress-piece {background:#ebece9}
+    .progress-piece.active {background:#33393c}
+    .progress-piece.done {background:#acb0a8}
+    .prompt-kicker,.round-count {color:#777c79}
+    .prompt strong {color:#323739}
+    .answer-panel,.quote,.session-note,.callout {background:#faf9f7;border-color:#e9e6e0}
+    .answer-panel .correct,.mini-title {color:#353b3d}
+    .scripture,.gospel-flow span {background:#f1eee8;color:#745f45}
+    .story-item,.stat,.guide-card,.fallback-library {background:#fafaf8;border-color:#e7e7e2;color:#3b4245}
+    .story-item b,.stat b,.fallback-answer strong {color:#343a3d}
+    .done-icon {background:#f3f3ef;border-color:#d7d9d3;color:#343a3d}
+    .modal-wrap {background:#14171bc7}
+    .close {background:#f1f1ef;color:#343a3d}
+    select {color:#30363a;border-color:#dfe1db}
+    .fallback-library>summary {color:#30363a}
+    .fallback-answer {background:#f1f1ed}
+    footer {color:#848883}
+    .welcome-panel {max-width:700px}
+    .welcome-panel .home-layout {display:block}
+    .welcome-panel .panel-inner {padding:clamp(30px,6vw,66px)}
+    .welcome-panel h1 {font-size:clamp(42px,7vw,64px);margin-bottom:18px}
+    .welcome-panel .lead {font-size:clamp(17px,2.7vw,21px);margin-bottom:12px}
+    .welcome-panel .steps {margin:26px 0 32px}
+    .welcome-panel .buttons {display:block;margin:0}
+    .welcome-panel .primary {min-height:70px;font-size:20px}
+    .welcome-hint {color:#848681;text-align:center;font-size:12px;line-height:1.6;margin:18px 0 0}
+    .ox-grid .ox {background:#eff7f0;border-color:#d5e7d7;color:#146344}
+    .ox-grid .ox.x {background:#fff2ee;border-color:#f3ddd7;color:#ab493c}
+    @media (max-width:440px) {
+      .logo {width:38px;height:38px;border-radius:10px;padding:6px}
+      .topbar {gap:8px}
+      .welcome-panel .panel-inner {padding:35px 23px}
+      .welcome-panel h1 {font-size:clamp(40px,10.6vw,48px)}
+      .welcome-panel .steps {gap:6px;margin:24px 0 28px}
+      .welcome-panel .step-chip {font-size:11px;padding:8px 9px}
+      .welcome-panel .primary {min-height:67px}
+    }
   </style>
 </head>
 <body>
