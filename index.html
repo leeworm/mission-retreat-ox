@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#154d48">
+  <meta name="theme-color" content="#334960">
   <meta name="description" content="수정빛교회 1청 미션 리트릿: 세 가지 OX 질문, 하나의 복음 이야기. 휴대폰·태블릿용 현장 진행 앱.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -145,13 +145,110 @@
       .story-item {font-size:11px}
     }
     @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto}*{transition:none!important}}
+
+    /* Sujungbit church publication-inspired refresh: dusted blue, ivory paper and warm-gold rules.
+       This is an interpretation of the church's publication aesthetic, not a replica of an unverified logo. */
+    :root {
+      --bg:#f4f2ee;--paper:#fffdfa;--ink:#26344a;--muted:#6e7888;
+      --forest:#344d6b;--forest-2:#3a5574;--forest-light:#e9eef4;
+      --line:#e6e1d9;--orange:#ba8856;--orange-light:#fbf4e8;
+      --shadow:0 14px 44px rgba(45,61,84,.075),0 2px 6px rgba(45,61,84,.025);
+      --radius:20px;
+    }
+    body {background:linear-gradient(120deg,#f6f3ee 0%,#f6f5f3 53%,#edf1f5 100%);color:var(--ink)}
+    .shell {max-width:990px;padding-top:calc(14px + env(safe-area-inset-top))}
+    .topbar {border-bottom:1px solid #dcdfe2;padding:7px 0 16px;position:relative}
+    .topbar::before {content:"";position:absolute;bottom:-1px;left:0;width:74px;height:2px;background:#c29b6d}
+    .logo {background:#344d6b;color:#fff;border-radius:50%;width:43px;height:43px;box-shadow:none}
+    .logo svg {width:28px;height:28px}
+    .brand small {color:#79889b;letter-spacing:.1em;font-weight:800}
+    .brand strong {font-size:15px;letter-spacing:-.035em}
+    .tiny-btn {border-color:#dfe2e7;background:#fff;color:#354c6a}
+    .tiny-btn.dark {background:#344d6b;border-color:#344d6b}
+    main {padding-top:22px}
+    .panel {border:1px solid #ece6de;background:var(--paper);box-shadow:var(--shadow)}
+    .panel::before {content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#bf9968,#d1b48b 34%,#f0e1cb 70%,transparent 100%);pointer-events:none;z-index:1}
+    .panel-inner {position:relative;z-index:2}
+    .top-pattern {width:230px;height:230px;border-width:1px;border-color:#ded7c9;right:-80px;top:-88px;opacity:.75}
+    .top-pattern::after {content:"";display:block;width:156px;height:156px;border:1px solid #e7e0d2;border-radius:50%;margin:35px}
+    .eyebrow {font-size:11px;letter-spacing:.16em;color:#8a7354;font-weight:850}
+    h1,h2 {letter-spacing:-.065em}
+    h1 {font-weight:810}
+    h1 span {color:#b08357}
+    h2 {font-weight:810}
+    p.lead {color:#667181}
+    .hero-rule {height:3px;background:#c6a476;width:55px}
+    .step-chip {background:#f7f7f4;border-color:#e4e4e0;color:#617084}
+    .step-chip b {color:#a57b4d}
+    .primary {background:#344d6b;box-shadow:0 5px 16px #354c6a18}
+    .primary:hover {background:#405e80}
+    .secondary {background:#eff3f7;color:#344d6b;border-color:#e2e8f0}
+    .quiet {color:#6b7788}
+    .primary:focus-visible,.secondary:focus-visible,.quiet:focus-visible,.ox:focus-visible {outline:3px solid #d3ae77;outline-offset:3px}
+    .round-label {color:#384f6e;background:#edf1f6}
+    .progress-piece {background:#ebe9e4}
+    .progress-piece.active {background:#ba8c58}
+    .progress-piece.done {background:#bdcbdc}
+    .prompt-kicker {color:#75829a}
+    .prompt strong {color:#344d6b}
+    .ox {background:#eef6f1;border-color:#d5e8d9;color:#25794d}
+    .ox.x {background:#fff0ec;border-color:#f0d4c9;color:#b35744}
+    .answer-panel {background:#f7f7f4;border-color:#e6e6e0}
+    .answer-panel .correct {color:#344d6b}
+    .scripture {background:#ecf0f6;color:#3a5574}
+    .story-item {background:#fbfaf6;color:#4e607a}
+    .story-item b {color:#aa8050}
+    .quote {background:#f7f5ef;border-left-color:#bc9565;color:#3b485a}
+    .gospel-flow span {background:#edf1f6;color:#344d6b}
+    .callout {background:#fbf7f0;border-color:#e8dbc9;color:#685745}
+    .done-icon {color:#344d6b;background:#edf2f7;border-color:#cad7e3}
+    .session-note {background:#f7f6f2;border-color:#e7e5dd;color:#5b6675}
+    .mini-title {color:#344d6b}
+    .stat {background:#f0f4f7;border-color:#e5e9ee}
+    .stat b {color:#344d6b}
+    .stat span {color:#5d6a80}
+    footer {color:#8290a1}
+    .modal-wrap {background:#1d293bb8}
+    .modal {box-shadow:0 24px 70px #14223842}
+    .close {color:#344d6b}
+    select {border-color:#dce3eb;color:#344d6b}
+    .guide-card .answer-key {color:#344d6b}
+    .text-button {color:#8d6654}
+    .fallback-library {background:#fbfaf7}
+    .fallback-library>summary,.fallback-item summary b,.fallback-answer strong {color:#344d6b}
+    .fallback-answer {background:#eff2f7}
+    .badge-operator {display:inline-flex;align-items:center;gap:7px;background:#f1ede5;border:1px solid #e4d8c6;color:#755b3c;border-radius:9px;padding:7px 11px;font-size:12px;font-weight:800;letter-spacing:.005em}
+    .badge-operator::before {content:"";width:7px;height:7px;border-radius:50%;background:#ba8d5a}
+    .role-note {padding:14px 17px;border:1px solid #e7e5e0;border-radius:12px;background:#f9f8f5;color:#657081;font-size:13px;line-height:1.72;margin:16px 0}
+    .role-note strong {color:#354b6c}
+    .operator-bar {margin:0 0 20px;display:flex;align-items:center;gap:9px;color:#786348;font-weight:800;font-size:12px;letter-spacing:.005em}
+    .operator-bar::before {content:"";width:17px;height:2px;background:#c5a06c}
+    .operator-actions {border-top:1px solid #e9e4dd;margin-top:22px;padding-top:19px}
+    .role-split {display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+    .role-split span {background:#f3f5f7;border:1px solid #e6e9ed;color:#50637e;border-radius:100px;padding:8px 12px;font-size:12px;font-weight:750}
+    .stage-help {font-size:13px;color:#667282;margin:0 0 14px;line-height:1.7}
+    .stage-help b {color:#344d6b}
+    .main-action-head {font-size:12px;color:#8a7354;font-weight:850;margin-bottom:7px}
+    .ox small {color:inherit}
+    .ox:focus-visible {box-shadow:0 0 0 2px #fff}
+    @media (max-width:440px) {
+      .brand strong {font-size:13px}
+      .brand small {font-size:10px}
+      .logo {width:36px;height:36px}
+      .panel-inner {padding:24px 21px 27px}
+      .topbar {gap:8px}
+      .badge-operator {font-size:11px;padding:6px 9px}
+      h1 {font-size:43px}
+      .prompt {min-height:unset;font-size:clamp(25px,7.0vw,32px);margin-bottom:22px}
+      .ox {min-height:154px}
+    }
   </style>
 </head>
 <body>
 <div class="shell">
   <header class="topbar">
     <div class="brand">
-      <div class="logo" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11h15v8a7.5 7.5 0 0 1-15 0v-8ZM21 13h2a3 3 0 0 1 0 6h-2M9 25h15" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 4c2 2-2 3.5 0 5M16 4c2 2-2 3.5 0 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3v6M15 21v6M3 15h6M21 15h6M6.5 6.5l4.1 4.1M19.4 19.4l4.1 4.1M23.5 6.5l-4.1 4.1M10.6 19.4l-4.1 4.1" stroke="#ddc298" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="15" r="4.8" fill="currentColor" /></svg></div>
       <div><small>수정빛교회 1청 미션 리트릿</small><strong>잠깐, 커피 한 잔?</strong></div>
     </div>
     <div class="head-actions">
@@ -175,7 +272,7 @@
       </details>
     </div></article>
   </main>
-  <footer>2026년 10월 17일 토요일 · 12:00–14:00 · 수정빛교회</footer>
+  <footer>2026. 10. 17. SAT · 12:00–14:00 · 수정빛교회 1청</footer>
 </div>
 <div id="overlay"></div>
 <script>
@@ -272,28 +369,29 @@
   function toggleConversation(){const s=state.session;if(s.phase!=='done'||!s.gospel)return;s.conversation=!s.conversation;statsFor().conversation=Math.max(0,statsFor().conversation+(s.conversation?1:-1));persist();render();}
   function progress(){return `<div class="progress" role="progressbar" aria-label="퀴즈 진행률" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${state.session.stage+1}">${CATEGORY.map((_,i)=>`<span class="progress-piece ${i<state.session.stage?'done':i===state.session.stage?'active':''}"></span>`).join('')}</div>`;}
   function homeUI(){return `<article class="panel"><div class="top-pattern"></div><div class="panel-inner home-layout">
-    <div class="intro-copy"><p class="eyebrow">2026 MISSION RETREAT · 10.17</p><h1>잠깐,<br><span>커피 한 잔?</span></h1><div class="hero-rule"></div><p class="lead">질문 세 개로 만나는 한 가지 이야기.<br>성경이 말하는 사람의 가치와 복음을 OX 퀴즈로 함께 살펴봅니다.</p><div class="steps"><span class="step-chip"><b>01</b> 사람의 가치</span><span class="step-chip"><b>02</b> 우리의 문제</span><span class="step-chip"><b>03</b> 복음과 은혜</span></div></div>
-    <div class="buttons"><button class="primary" data-act="start">OX 퀴즈 시작 <span aria-hidden="true">→</span></button><button class="secondary" data-act="guide">진행자용 12문항 보기</button></div>
-    <div class="info-aside"><p class="mini-title">진행 안내</p><p class="subnote" style="margin-top:7px">각 단계에서 한 문제씩 무작위로 나옵니다. O 또는 X를 누르면 정답과 성경 근거가 표시됩니다.</p><p class="subnote"><strong>커피 쿠폰은 정답이나 복음 설명 청취 여부와 관계없이</strong> OX 세 문항에 참여하시면 드립니다.</p><p class="metadata">${safe(AREAS.find(a=>a.id===state.area)?.label||'')} · 진행기기별 독립 운영</p></div>
+    <div class="intro-copy"><p class="eyebrow">SUJUNGBIT CHURCH · MISSION RETREAT 2026</p><h1>잠깐,<br><span>커피 한 잔?</span></h1><div class="hero-rule"></div><p class="lead">질문 세 개로 만나는 한 가지 이야기.<br>성경이 말하는 사람의 가치와 복음을 함께 살펴봅니다.</p><span class="badge-operator">전도자 기기에서 진행하는 현장 퀴즈</span><div class="steps"><span class="step-chip"><b>01</b> 사람의 가치</span><span class="step-chip"><b>02</b> 우리의 문제</span><span class="step-chip"><b>03</b> 복음과 은혜</span></div></div>
+    <div class="buttons"><div class="main-action-head">진행자가 시민에게 화면을 보여주면서 시작합니다.</div><button class="primary" data-act="start">참여자와 O/X 시작 <span aria-hidden="true">→</span></button><button class="secondary" data-act="guide">진행자용 전체 12문항 확인</button></div>
+    <div class="info-aside"><p class="mini-title">누가 어떻게 조작하나요?</p><div class="role-split"><span>전도자 · 화면 보여주기</span><span>시민 · O 또는 X 선택</span><span>전도자 · 정답과 복음 설명</span></div><p class="subnote">QR 스캔은 필요하지 않습니다. 시민이 이 기기에서 직접 O/X를 누르거나 말로 답하면 전도자가 대신 눌러주세요.</p><p class="subnote"><strong>커피 쿠폰은 정답과 복음 설명 청취 여부에 관계없이</strong> OX 세 문항 참여 후 드립니다.</p><p class="metadata">현재 설정 장소: ${safe(AREAS.find(a=>a.id===state.area)?.label||'')} · 이 기기만 기록</p></div>
   </div></article>`;}
   function quizUI(){const s=state.session;const q=getQuestion();const answered=s.choices[s.stage]!==null;return `<article class="panel"><div class="panel-inner">
     <div class="section-top"><span class="round-label">STEP ${s.stage+1} · ${CATEGORY[s.stage]}</span><span class="round-count">${s.stage+1} / 3</span></div>${progress()}
+    ${!answered?`<p class="stage-help"><b>시민에게 화면을 보여주세요.</b> O/X를 직접 누르시거나 말로 답하셔도 됩니다.</p>`:`<div class="operator-bar">진행자 · 정답을 설명해 주세요</div>`}
     <div class="prompt-kicker">성경에서는 어떻게 말할까요?</div><div class="prompt" id="question-text">${safe(q.q)}</div>
-    ${!answered?`<div class="ox-grid" role="group" aria-label="OX 정답 선택"><button class="ox" data-act="choose-o" aria-label="O 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 선택">X<small>아니다</small></button></div><button class="quiet" style="margin-top:13px" data-act="redraw">다른 카드 뽑기</button><p class="wide-note">정답은 선택 후 공개됩니다 · 문항 ${safe(q.id)}</p>`:
-    `<div class="answer-panel" id="answer"><p class="correct">정답은 ${q.key}입니다.</p><p>${safe(q.why)}</p><span class="scripture">${safe(q.verse)}</span></div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 질문으로'} <span aria-hidden="true">→</span></button></div><p class="wide-note">고르신 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
+    ${!answered?`<div class="ox-grid" role="group" aria-label="참여자가 O 또는 X를 선택하는 영역"><button class="ox" data-act="choose-o" aria-label="O 맞다 선택">O<small>맞다</small></button><button class="ox x" data-act="choose-x" aria-label="X 아니다 선택">X<small>아니다</small></button></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="quiet" data-act="redraw">다른 문제로 바꾸기</button></div><p class="wide-note">답을 선택하면 정답이 공개됩니다 · 문항 ${safe(q.id)}</p>`:
+    `<div class="answer-panel" id="answer"><p class="correct">정답은 ${q.key}입니다.</p><p>${safe(q.why)}</p><span class="scripture">${safe(q.verse)}</span></div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><div class="answer-actions"><button class="primary" data-act="next">${s.stage===2?'세 문제 마치기':'다음 문제 보여주기'} <span aria-hidden="true">→</span></button></div></div><p class="wide-note">참여자의 답: ${s.choices[s.stage]} · 문항 ${safe(q.id)}</p>`}
   </div></article>`;}
-  function bridgeUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">QUIZ COMPLETE</p><h2>세 개의 질문은<br>하나의 이야기로 이어집니다.</h2><p class="lead">사람의 가치와 죄의 문제, 그리고 예수 그리스도의 복음으로 이어지는 이야기입니다.</p><div class="story-steps"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div><div class="quote">“괜찮으시면 이 세 질문이 어떻게 연결되는지 1분만 말씀드려도 될까요?”</div><div class="buttons"><button class="primary" data-act="bridge-yes">네, 들어볼게요</button><button class="quiet" data-act="bridge-no">아니요, 여기까지 들을게요</button></div><p class="subnote">어느 쪽을 선택하셔도 OX 참여 선물은 똑같이 드립니다.</p></div></article>`;}
-  function gospelUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">ONE STORY · ABOUT 1 MINUTE</p><h2>우리가 전하고 싶은<br>한 가지 이야기</h2><div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div><div class="quote">${safe(GOSPEL)}</div><p class="mini-title">설명 후 이어갈 질문</p><p class="lead" style="font-size:16px">“혹시 방금 들으신 내용 중에 궁금하시거나 이야기해 보고 싶은 부분이 있으세요?”</p><div class="callout">원하지 않는 사람에게 결신이나 기도를 강요하지 않습니다. 질문은 듣고, 모르는 것은 정확히 확인하겠다고 안내합니다.</div><button class="primary" data-act="gospel-done">설명 마치고 쿠폰 안내 <span aria-hidden="true">→</span></button></div></article>`;}
-  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>커피 쿠폰 지급 안내</strong><div style="margin-top:5px">OX 3문항 참여를 마쳤으므로 정답 개수나 설명 청취 여부와 상관없이 1인 1매를 전달해 주세요.</div></div>
-    ${s.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${s.conversation?'✓ 추가 대화 희망 기록됨 · 취소하기':'추가 대화로 이어졌어요 (기록)'}</button></div>`:''}
-    <div class="buttons"><button class="primary" data-act="start">다음 참여자 시작 <span aria-hidden="true">→</span></button><button class="quiet" data-act="home">처음 화면으로</button></div><p class="subnote">후속 대화나 연락처 제공은 참여자가 먼저 원할 때만 안내해 주세요. 앱은 개인정보를 수집하지 않습니다.</p></div></article>`;}
+  function bridgeUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">THREE QUESTIONS, ONE STORY</p><h2>세 개의 질문은<br>하나의 이야기로 이어집니다.</h2><p class="lead">사람의 가치와 죄의 문제, 그리고 예수 그리스도의 복음으로 이어지는 이야기입니다.</p><div class="story-steps"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div><div class="operator-bar">진행자가 시민에게 직접 물어봐 주세요</div><div class="quote">“괜찮으시면 이 세 질문이 어떻게 연결되는지 1분만 말씀드려도 될까요?”</div><div class="role-note"><strong>아래 버튼은 진행자가 누릅니다.</strong> 시민의 대답을 들은 후 해당 버튼을 선택해 주세요.</div><div class="buttons"><button class="primary" data-act="bridge-yes">설명에 동의하셨어요 · 복음 보기</button><button class="quiet" data-act="bridge-no">설명은 괜찮다고 하셨어요 · 종료</button></div><p class="subnote">어느 쪽을 선택하셔도 OX 참여 선물은 똑같이 드립니다.</p></div></article>`;}
+  function gospelUI(){return `<article class="panel"><div class="panel-inner"><p class="eyebrow">ONE STORY · ABOUT 1 MINUTE</p><h2>우리가 전하고 싶은<br>한 가지 이야기</h2><div class="gospel-flow"><span>창조</span><span>죄</span><span>십자가와 부활</span><span>은혜</span></div><div class="operator-bar">진행자용 1분 복음 제시문 · 시민에게 직접 설명해 주세요</div><div class="quote">${safe(GOSPEL)}</div><p class="mini-title">설명 후 이어갈 질문</p><p class="lead" style="font-size:16px">“혹시 방금 들으신 내용 중에 궁금하시거나 이야기해 보고 싶은 부분이 있으세요?”</p><div class="callout">원하지 않는 사람에게 결신이나 기도를 강요하지 않습니다. 질문을 듣고 모르는 것은 정확히 확인하겠다고 안내합니다.</div><div class="operator-actions"><div class="main-action-head">진행자 전용</div><button class="primary" data-act="gospel-done">설명 마침 · 커피 쿠폰 안내 <span aria-hidden="true">→</span></button></div></div></article>`;}
+  function doneUI(){const s=state.session;return `<article class="panel"><div class="panel-inner"><div class="done-icon" aria-hidden="true">✓</div><p class="eyebrow">THANK YOU</p><h2>참여해 주셔서<br>감사합니다.</h2><p class="lead">오늘의 세 가지 질문이 작은 생각의 계기가 되었길 바랍니다.</p><div class="session-note"><strong>진행자 확인 · 커피 쿠폰 전달</strong><div style="margin-top:5px">OX 세 문제 참여를 마쳤습니다. 정답 개수나 복음 설명 청취 여부에 관계없이 1인 1매를 전달해 주세요.</div></div>
+    ${s.gospel?`<div class="buttons"><button class="secondary" data-act="conversation">${s.conversation?'✓ 추가 대화 기록됨 · 취소하기':'진행자 · 추가 대화가 있었다면 기록'}</button></div>`:''}
+    <div class="operator-actions"><div class="main-action-head">진행자 전용 · 다음 시민에게 새 문제 3개를 출제합니다.</div><div class="buttons"><button class="primary" data-act="start">다음 참여자 시작 <span aria-hidden="true">→</span></button><button class="quiet" data-act="home">처음 화면으로</button></div></div><p class="subnote">후속 대화나 연락처 제공은 참여자가 먼저 원할 때만 안내해 주세요. 앱은 개인정보를 수집하지 않습니다.</p></div></article>`;}
   function render(){const phase=state.session.phase;app.innerHTML=phase==='home'?homeUI():phase==='quiz'?quizUI():phase==='bridge'?bridgeUI():phase==='gospel'?gospelUI():doneUI();renderModal();}
   function getTotals(){return Object.values(state.stats).reduce((acc,obj)=>{Object.keys(acc).forEach(k=>acc[k]+=obj[k]);return acc;},makeStats());}
   function renderModal(){
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
       const stats=state.stats[state.area]||makeStats(),total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">운영 설정 및 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><div class="field"><label for="area-select">현재 진행 장소</label><select id="area-select">${AREAS.map(a=>`<option value="${a.id}" ${state.area===a.id?'selected':''}>${safe(a.label)}</option>`).join('')}</select><p class="subnote">퀴즈 도중 장소를 바꿔도 해당 회차의 기록은 시작 장소에 반영됩니다.</p></div><div class="mini-title">선택한 장소의 이 기기 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">운영 설정 및 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><div class="field"><label for="area-select">이 진행 기기의 장소</label><select id="area-select">${AREAS.map(a=>`<option value="${a.id}" ${state.area===a.id?'selected':''}>${safe(a.label)}</option>`).join('')}</select><p class="subnote">퀴즈 도중 장소를 바꿔도 해당 회차의 기록은 시작 장소에 반영됩니다.</p></div><div class="mini-title">선택한 장소의 이 기기 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
       overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
