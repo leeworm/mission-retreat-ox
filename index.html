@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#334960">
+  <meta name="theme-color" content="#303538">
   <meta name="description" content="수정빛교회 1청 미션 리트릿: 세 가지 OX 질문, 하나의 복음 이야기. 휴대폰·태블릿용 현장 진행 앱.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="커피 한 잔 OX">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="icon" type="image/x-icon" href="https://crystallightchurch.org/favicon.ico">
+  <link rel="apple-touch-icon" href="https://www.google.com/s2/favicons?domain=crystallightchurch.org&amp;sz=180">
   <title>잠깐, 커피 한 잔? | 수정빛교회 OX</title>
   <style>
     :root {
@@ -248,7 +249,10 @@
 <div class="shell">
   <header class="topbar">
     <div class="brand">
-      <div class="logo" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3v6M15 21v6M3 15h6M21 15h6M6.5 6.5l4.1 4.1M19.4 19.4l4.1 4.1M23.5 6.5l-4.1 4.1M10.6 19.4l-4.1 4.1" stroke="#ddc298" stroke-width="2" stroke-linecap="round"/><circle cx="15" cy="15" r="4.8" fill="currentColor" /></svg></div>
+      <div class="logo" aria-hidden="true">
+        <img alt="" src="https://crystallightchurch.org/favicon.ico" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://www.google.com/s2/favicons?domain=crystallightchurch.org\u0026sz=128'}else{this.hidden=true;this.nextElementSibling.style.display='grid'}">
+        <span class="church-fallback">빛</span>
+      </div>
       <div><small>수정빛교회 1청 미션 리트릿</small><strong>잠깐, 커피 한 잔?</strong></div>
     </div>
     <div class="head-actions">
@@ -368,10 +372,16 @@
   function gospelDone(){const s=state.session;if(s.phase!=='gospel')return;s.phase='done';if(!s.gospel){s.gospel=true;statsFor().gospel++;}persist();render();moveTop();}
   function toggleConversation(){const s=state.session;if(s.phase!=='done'||!s.gospel)return;s.conversation=!s.conversation;statsFor().conversation=Math.max(0,statsFor().conversation+(s.conversation?1:-1));persist();render();}
   function progress(){return `<div class="progress" role="progressbar" aria-label="퀴즈 진행률" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${state.session.stage+1}">${CATEGORY.map((_,i)=>`<span class="progress-piece ${i<state.session.stage?'done':i===state.session.stage?'active':''}"></span>`).join('')}</div>`;}
-  function homeUI(){return `<article class="panel"><div class="top-pattern"></div><div class="panel-inner home-layout">
-    <div class="intro-copy"><p class="eyebrow">SUJUNGBIT CHURCH · MISSION RETREAT 2026</p><h1>잠깐,<br><span>커피 한 잔?</span></h1><div class="hero-rule"></div><p class="lead">질문 세 개로 만나는 한 가지 이야기.<br>성경이 말하는 사람의 가치와 복음을 함께 살펴봅니다.</p><span class="badge-operator">전도자 기기에서 진행하는 현장 퀴즈</span><div class="steps"><span class="step-chip"><b>01</b> 사람의 가치</span><span class="step-chip"><b>02</b> 우리의 문제</span><span class="step-chip"><b>03</b> 복음과 은혜</span></div></div>
-    <div class="buttons"><div class="main-action-head">진행자가 시민에게 화면을 보여주면서 시작합니다.</div><button class="primary" data-act="start">참여자와 O/X 시작 <span aria-hidden="true">→</span></button><button class="secondary" data-act="guide">진행자용 전체 12문항 확인</button></div>
-    <div class="info-aside"><p class="mini-title">누가 어떻게 조작하나요?</p><div class="role-split"><span>전도자 · 화면 보여주기</span><span>시민 · O 또는 X 선택</span><span>전도자 · 정답과 복음 설명</span></div><p class="subnote">QR 스캔은 필요하지 않습니다. 시민이 이 기기에서 직접 O/X를 누르거나 말로 답하면 전도자가 대신 눌러주세요.</p><p class="subnote"><strong>커피 쿠폰은 정답과 복음 설명 청취 여부에 관계없이</strong> OX 세 문항 참여 후 드립니다.</p><p class="metadata">현재 설정 장소: ${safe(AREAS.find(a=>a.id===state.area)?.label||'')} · 이 기기만 기록</p></div>
+  function homeUI(){return `<article class="panel welcome-panel"><div class="panel-inner home-layout">
+    <div class="intro-copy">
+      <p class="eyebrow">수정빛교회 · 1청 미션 리트릿</p>
+      <h1>잠깐,<br><span>커피 한 잔?</span></h1>
+      <div class="hero-rule"></div>
+      <p class="lead">질문 세 개로 만나는 한 가지 이야기.</p>
+      <div class="steps" aria-label="퀴즈 주제"><span class="step-chip"><b>01</b> 사람의 가치</span><span class="step-chip"><b>02</b> 우리의 문제</span><span class="step-chip"><b>03</b> 복음과 은혜</span></div>
+    </div>
+    <div class="buttons"><button class="primary" data-act="start">O/X 퀴즈 시작 <span aria-hidden="true">→</span></button></div>
+    <p class="welcome-hint">세 문제 · 약 3분 · 정답과 관계없이 참여 선물 제공</p>
   </div></article>`;}
   function quizUI(){const s=state.session;const q=getQuestion();const answered=s.choices[s.stage]!==null;return `<article class="panel"><div class="panel-inner">
     <div class="section-top"><span class="round-label">STEP ${s.stage+1} · ${CATEGORY[s.stage]}</span><span class="round-count">${s.stage+1} / 3</span></div>${progress()}
