@@ -328,7 +328,7 @@
       <div><small>수정빛교회 1청 미션 리트릿</small><strong>잠깐, 커피 한 잔?</strong></div>
     </div>
     <div class="head-actions">
-      <button type="button" class="tiny-btn" data-act="stats" aria-label="진행 기록 및 장소 설정">설정·기록</button>
+      <button type="button" class="tiny-btn" data-act="stats" aria-label="진행 기록">진행 기록</button>
       <button type="button" class="tiny-btn dark" data-act="home">처음으로</button>
     </div>
   </header>
@@ -355,11 +355,7 @@
 (() => {
   'use strict';
   const STORAGE_KEY = 'sujung_ox_v1_20261017';
-  const AREAS = [
-    { id: 'unassigned', label: '장소 미선택' },
-    { id: 'pangyo', label: '판교역 광장' },
-    { id: 'medical', label: '성남시의료원 앞 공원' },
-  ];
+  const AREAS = [{id:'pangyo', label:'판교역 광장'}];
   const CATEGORY = ['인간의 가치', '우리의 문제', '예수님과 은혜'];
   // 공개된 성경 내용을 묻는 사실형 OX 문항. 설명은 수정빛교회 전도용 초안 기준.
   const QUESTIONS = [
@@ -384,8 +380,8 @@
   ];
   const GOSPEL = '성경은 우리가 단순히 일을 잘하고 성과를 내기 때문에 가치 있는 존재라고 말하지 않고, 하나님의 형상대로 지음받은 존재라고 말합니다. 하지만 동시에 우리 모두가 죄를 범했고, 그 죄 때문에 하나님과의 관계가 깨어졌다고 말합니다. 이 문제는 우리가 더 착해지고 더 열심히 산다고 스스로 해결할 수 있는 문제가 아니라고 합니다. 그래서 하나님께서 우리를 사랑하셔서 예수 그리스도를 보내셨고, 예수님께서 우리의 죄를 위해 십자가에서 죽으시고 다시 살아나셨다는 것이 기독교 복음의 핵심입니다. 구원은 우리가 잘해서 받는 보상이 아니라 예수 그리스도를 믿는 사람에게 하나님께서 은혜로 주시는 선물이라고 성경은 말합니다.';
   const makeStats = () => ({ completed:0, gospel:0, conversation:0 });
-  const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, conversation:false, area:'unassigned'});
-  const defaults = () => ({area:'unassigned',stats:{unassigned:makeStats(),pangyo:makeStats(),medical:makeStats()}, bags:[[],[],[]], last:[null,null,null],session:blankSession()});
+  const blankSession = () => ({phase:'home', stage:0, questionIds:[], choices:[null,null,null], counted:false, gospel:false, conversation:false, area:'pangyo'});
+  const defaults = () => ({area:'pangyo',stats:{pangyo:makeStats()}, bags:[[],[],[]], last:[null,null,null],session:blankSession()});
   let state = defaults();
   let modal = '';
   const app = document.getElementById('app');
@@ -397,10 +393,15 @@
       if (!raw) return;
       const incoming = JSON.parse(raw);
       const fresh = defaults();
-      if (AREAS.some(x=>x.id===incoming.area)) fresh.area = incoming.area;
-      for (const area of AREAS) for (const key of Object.keys(makeStats())) {
-        const n = incoming.stats?.[area.id]?.[key];
-        if (Number.isSafeInteger(n) && n>=0) fresh.stats[area.id][key]=n;
+      // 이전 버전의 장소별 기록은 삭제하지 않고 이 기기의 누적 기록으로 합산합니다.
+      // 새 버전은 '판교역 광장'만 사용하며 장소 설정을 요구하지 않습니다.
+      for (const key of Object.keys(makeStats())) {
+        let count=0;
+        for (const legacyId of ['unassigned','pangyo','medical']) {
+          const n=incoming.stats?.[legacyId]?.[key];
+          if (Number.isSafeInteger(n) && n>=0 && Number.isSafeInteger(count+n)) count+=n;
+        }
+        fresh.stats.pangyo[key]=count;
       }
       if (Array.isArray(incoming.bags) && incoming.bags.length===3) {
         incoming.bags.forEach((bag,i)=>{
@@ -409,8 +410,8 @@
       }
       if(Array.isArray(incoming.last) && incoming.last.length===3) fresh.last=incoming.last;
       const s = incoming.session;
-      if (s && ['home','quiz','bridge','gospel','done'].includes(s.phase) && Number.isInteger(s.stage) && s.stage>=0 && s.stage<=2 && Array.isArray(s.questionIds) && (s.phase==='home'||(s.questionIds.length===3 && s.questionIds.every((id,i)=>QUESTIONS[i].some(q=>q.id===id)))) && Array.isArray(s.choices) && s.choices.length===3 && s.choices.every(v=>v===null||v==='O'||v==='X') && AREAS.some(a=>a.id===s.area)) {
-        fresh.session = {...blankSession(),...s};
+      if (s && ['home','quiz','bridge','gospel','done'].includes(s.phase) && Number.isInteger(s.stage) && s.stage>=0 && s.stage<=2 && Array.isArray(s.questionIds) && (s.phase==='home'||(s.questionIds.length===3 && s.questionIds.every((id,i)=>QUESTIONS[i].some(q=>q.id===id)))) && Array.isArray(s.choices) && s.choices.length===3 && s.choices.every(v=>v===null||v==='O'||v==='X') ) {
+        fresh.session = {...blankSession(),...s,area:'pangyo'};
         fresh.session.counted=!!s.counted;
         fresh.session.gospel=!!s.gospel;
         fresh.session.conversation=!!s.conversation;
@@ -430,7 +431,7 @@
     const chosen=bag.shift();state.bags[stage]=bag;state.last[stage]=chosen;return chosen;
   }
   function getQuestion(){const s=state.session;return QUESTIONS[s.stage].find(q=>q.id===s.questionIds[s.stage]);}
-  function statsFor(){return state.stats[state.session.area]||state.stats.unassigned;}
+  function statsFor(){return state.stats.pangyo;}
   function moveTop(){window.scrollTo(0,0);}
   function start(){state.session={...blankSession(), phase:'quiz',questionIds:[0,1,2].map(draw),area:state.area};persist();render();moveTop();}
   function goHome(){
@@ -472,8 +473,8 @@
   function renderModal(){
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
-      const stats=state.stats[state.area]||makeStats(),total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">운영 설정 및 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><div class="field"><label for="area-select">이 진행 기기의 장소</label><select id="area-select">${AREAS.map(a=>`<option value="${a.id}" ${state.area===a.id?'selected':''}>${safe(a.label)}</option>`).join('')}</select><p class="subnote">퀴즈 도중 장소를 바꿔도 해당 회차의 기록은 시작 장소에 반영됩니다.</p></div><div class="mini-title">선택한 장소의 이 기기 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      const stats=state.stats.pangyo,total=getTotals();
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div><div class="stat"><b>${stats.conversation}</b><span>추가 대화</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회 · 대화 ${total.conversation}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">진행자용 전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
       overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행자용 12문항</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">참여자에게 정답을 미리 보여주지 않도록 주의해 주세요.</p>${QUESTIONS.map((group,i)=>`<h3>${i+1}단계 · ${CATEGORY[i]}</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${safe(q.verse)}</p><p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
@@ -506,9 +507,6 @@
       case 'reset-stats':if(confirm('이 기기에 저장된 전체 기록을 초기화할까요? 복원할 수 없습니다.')){for(const a of AREAS)state.stats[a.id]=makeStats();state.session=blankSession();modal='stats';persist();render();}break;
       case 'wake':toggleWake();break;
     }
-  });
-  document.addEventListener('change',e=>{
-    if(e.target.id==='area-select'&&AREAS.some(a=>a.id===e.target.value)){state.area=e.target.value;persist();render();}
   });
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'&&modal){modal='';renderModal();return;}
