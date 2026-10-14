@@ -351,6 +351,20 @@
     .answer-panel .chosen-answer b {color:#354449;font-size:16px}
     .stage-help {font-size:14px;font-weight:650;color:#555d5c;line-height:1.65}
     @media(max-width:440px){.stats-icon-btn{width:40px;min-width:40px}}
+    /* 복음 설명: 시민을 위한 읽기 쉬운 5단계 이야기 */
+    .gospel-panel {max-width:800px}
+    .gospel-sections {display:grid;gap:13px;margin:23px 0 24px}
+    .gospel-section {border:1px solid #e5e5df;border-radius:16px;background:#faf9f6;overflow:hidden;padding:clamp(16px,3.5vw,24px)}
+    .gospel-section-heading {display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .gospel-step-number {display:flex;align-items:center;justify-content:center;flex:0 0 36px;height:36px;border-radius:11px;background:#e8e7e1;color:#3c4244;font-size:13px;font-weight:850;font-variant-numeric:tabular-nums}
+    .gospel-section-heading h3 {margin:0;color:#292e30;font-size:clamp(18px,3.8vw,23px);font-weight:850;letter-spacing:-.035em;line-height:1.4}
+    .gospel-paragraphs {display:grid;gap:10px}
+    .gospel-paragraphs p {margin:0;font-size:clamp(15px,2.8vw,17px);color:#434b4d;line-height:1.85;word-break:keep-all;overflow-wrap:break-word}
+    .gospel-section:nth-child(4){background:#f4f4f0;border-color:#dedfd8}
+    .gospel-section:nth-child(4) .gospel-paragraphs p:first-child {font-size:clamp(18px,3.5vw,22px);font-weight:850;color:#293134}
+    .gospel-section:last-child {background:#f4f6f4;border-color:#dae2db}
+    .gospel-panel .buttons {margin-top:24px}
+    @media(max-width:440px){.gospel-sections{gap:11px}.gospel-section{padding:18px 16px}.gospel-section-heading{gap:9px}.gospel-step-number{height:32px;flex-basis:32px}}
   </style>
 </head>
 <body>
@@ -591,7 +605,50 @@
     }
   };
   function getPassages(q){return q.passages.map(key=>BIBLE_VERSES[key]);}
-    const GOSPEL = '하나님은 우리를 창조하시고 사랑하십니다. 하지만 성경은 우리 모두가 죄를 범했고, 하나님을 떠나 자기 뜻대로 살아왔다고 말합니다. 죄는 우리를 하나님과 갈라놓으며, 아무리 착한 일을 많이 해도 스스로 해결할 수 없습니다. 그래서 하나님의 아들 예수 그리스도께서 이 땅에 오셔서 우리의 죄를 대신해 십자가에서 죽으시고, 사흘 만에 다시 살아나셨습니다. 예수님은 죄와 죽음에서 우리를 구원하시는 구주이십니다. 성경은 우리에게 죄에서 돌이켜 회개하고 예수 그리스도를 구주이자 주님으로 믿으라고 초대합니다. 예수님을 믿는 사람은 은혜로 죄 사함을 받고 하나님과 화목하며 영원한 생명을 얻습니다. 이 이야기가 더 궁금하시다면 편하게 질문해 주세요.';
+    // 전도사님이 전달한 최종 복음 원고. 문장과 순서를 임의로 수정하지 않습니다.
+  const GOSPEL_SECTIONS = [
+    {
+      "title": "창조",
+      "lines": [
+        "하나님은 자신의 영광을 드러내시기 위해 이 세상 모든 것을 창조하셨습니다.",
+        "그리고 사람은 하나님의 형상으로 특별하게 지음 받았습니다."
+      ]
+    },
+    {
+      "title": "죄",
+      "lines": [
+        "그런데 사람은 죄를 지었습니다. 그 죄는 하나님의 말씀을 어긴 것이었습니다.",
+        "죄를 지으면 벌을 받아야 합니다. 사람은 하나님과의 단절, 즉 영원한 죽음이라는 벌을 받게 되었습니다.",
+        "사람의 힘으로는 그 죽음에서 벗어날 수가 없었습니다."
+      ]
+    },
+    {
+      "title": "예수 그리스도와 구원",
+      "lines": [
+        "그런데 하나님은 사랑이셔서, 구원의 길을 열어주셨습니다.",
+        "하나님의 아들 예수 그리스도가 이 땅에 오셔서 우리 대신 죽으셨습니다.",
+        "우리가 치러야 했던 죗값을 십자가에서 대신 치르셨습니다.",
+        "그리고 3일 만에 부활하셨습니다.",
+        "예수를 믿는 자는 이제 영원한 '죽음'이 아닌 영원한 '생명'을 얻게 되었습니다."
+      ]
+    },
+    {
+      "title": "복음",
+      "lines": [
+        "죽음에서 생명으로,",
+        "그래서 성경은 이것을 복음, '기쁜 소식'이라고 말합니다."
+      ]
+    },
+    {
+      "title": "정리",
+      "lines": [
+        "성경은 누구나 구원을 얻는 것이 아니고",
+        "이 복음을 '믿음'으로 구원을 얻는다고 합니다.",
+        "함께 이 복음을 믿고, 영원한 생명을 누리면 좋겠습니다.",
+        "들어주셔서 감사합니다."
+      ]
+    }
+  ];
   const makeStats = () => ({ completed:0, gospel:0 });
   const blankSession = () => ({phase:'home', stage:0, setIndex:null, questionIds:[], choices:[null,null,null], counted:false, gospel:false, area:'pangyo'});
   const defaults = () => ({area:'pangyo',stats:{pangyo:makeStats()}, setBag:[], lastSet:null,session:blankSession()});
@@ -706,18 +763,21 @@
     <p class="lead">조금 전 풀어보신 질문들은 성경이 전하는 복음으로 연결됩니다.</p>
     <div class="story-steps" aria-label="이야기의 흐름"><div class="story-item"><b>1</b>가치</div><div class="story-item"><b>2</b>죄</div><div class="story-item"><b>3</b>은혜</div></div>
     <div class="bridge-invite">
-      <h3>이 이야기를 1분만 들어보시겠어요?</h3>
+      <h3>이 이야기를 잠시 들어보시겠어요?</h3>
       <p>부담 없이 선택해 주세요. 듣지 않으셔도 참여 선물은 똑같이 드립니다.</p>
     </div>
     <div class="buttons"><button class="primary" data-act="bridge-yes">네, 들어볼게요 <span aria-hidden="true">→</span></button><button class="quiet" data-act="bridge-no">아니요, 괜찮아요</button></div>
   </div></article>`;}
-  function gospelUI(){return `<article class="panel"><div class="panel-inner">
+  function gospelUI(){return `<article class="panel gospel-panel"><div class="panel-inner">
     <p class="eyebrow">세 가지 질문이 전하는 이야기</p>
-    <h2>우리가 전하고 싶은<br>한 가지 이야기</h2>
-    <div class="gospel-flow"><span>창조와 사랑</span><span>죄와 단절</span><span>십자가와 부활</span><span>회개와 믿음</span></div>
-    <div class="quote">${safe(GOSPEL)}</div>
-    <p class="gospel-scripture">관련 말씀: 로마서 3:23 · 5:8 · 6:23 / 고린도전서 15:3–4 / 에베소서 2:8–9 / 로마서 10:9</p><p class="mini-title">더 궁금한 점이 있으신가요?</p>
-    <p class="lead" style="font-size:16px">들으신 내용에 대해 자유롭게 질문하셔도 좋습니다.</p>
+    <h2>죽음에서 생명으로,<br>기쁜 소식</h2>
+    <div class="gospel-sections" aria-label="복음 설명 다섯 단계">
+      ${GOSPEL_SECTIONS.map((section,i)=>`<section class="gospel-section" aria-labelledby="gospel-heading-${i}">
+        <div class="gospel-section-heading"><span class="gospel-step-number">${String(i+1).padStart(2,'0')}</span><h3 id="gospel-heading-${i}">${safe(section.title)}</h3></div>
+        <div class="gospel-paragraphs">${section.lines.map(line=>`<p>${safe(line)}</p>`).join('')}</div>
+      </section>`).join('')}
+    </div>
+    <p class="gospel-scripture">관련 말씀: 창세기 1:27 · 로마서 3:23 · 로마서 6:23 · 로마서 5:8 · 고린도전서 15:3–4 · 에베소서 2:8–9</p>
     <div class="buttons"><button class="primary" data-act="gospel-done">참여 선물 안내 <span aria-hidden="true">→</span></button></div>
   </div></article>`;}
   function doneUI(){return `<article class="panel thanks-panel"><div class="panel-inner">
@@ -734,7 +794,7 @@
     if(!modal){overlay.innerHTML='';return;}
     if(modal==='stats'){
       const stats=state.stats.pangyo,total=getTotals();
-      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>1분 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
+      overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">진행 기록</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="mini-title">행사 장소 · 판교역 광장</p><div class="mini-title">이 기기의 누적 진행 기록</div><div class="stat-grid"><div class="stat"><b>${stats.completed}</b><span>OX 3문항 완료</span></div><div class="stat"><b>${stats.gospel}</b><span>복음 설명 완료</span></div></div><p class="subnote">이 기기로 진행한 전체 기록: OX ${total.completed}회 · 설명 ${total.gospel}회</p><div class="divider"></div><p class="mini-title">개인정보·기록에 관하여</p><p class="subnote" style="margin-top:7px">이름·연락처·정답 선택 이력은 저장하지 않습니다. 완료 횟수만 이 브라우저에 보관하며 다른 기기와 자동 합산되지 않습니다. 브라우저 데이터를 지우면 기록이 사라집니다.</p><div class="buttons"><button class="secondary" data-act="guide">전체 문항 확인</button><button class="quiet" data-act="wake">${wakeLock?'화면 유지 해제':'화면 켜짐 유지 시도'}</button></div><button class="text-button" data-act="reset-stats">이 기기의 통계 초기화</button></div></section></div>`;
     } else if(modal==='guide') {
       overlay.innerHTML=`<div class="modal-wrap" data-act="dismiss" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">전체 O/X 9문항 · 3세트</h2><button class="close" data-act="close" aria-label="닫기">×</button></div><div class="modal-body"><p class="subnote" style="margin:0 0 16px">아래에서 각 문제와 관련 성경 구절을 확인할 수 있습니다.</p>${QUESTION_SETS.map((group,i)=>`<h3>${i+1}세트 · 창조 → 죄 → 구원</h3><div class="card-list">${group.map(q=>`<div class="guide-card"><strong>${safe(q.id)} · ${safe(q.q)}</strong><p><span class="answer-key">정답 ${q.key}</span> · ${getPassages(q).map(p=>p.label).join(' · ')}</p>${getPassages(q).map(p=>`<p class="guide-verse"><strong>${safe(p.label)}</strong> · ${safe(p.text)} <a href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">원문 ↗</a></p>`).join('')}<p>${safe(q.why)}</p></div>`).join('')}</div>`).join('')}<div class="buttons"><button class="primary" data-act="close">확인 완료</button></div></div></section></div>`;
     }
